@@ -1,0 +1,493 @@
+
+
+.selectTop {
+    text-align: center;
+}
+.title {
+    font-size: 20px;
+    color: #FFFFFF;
+    letter-spacing: 1.67px;
+    height: 20px;
+    width: 88px;
+    line-height: 0px;
+    /* display: block; */
+    margin: 0 auto;
+}
+.btn {
+    width: 130px;
+    height: 50px;
+    background: url('../../assets/common/button01.png') no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+    text-align: center;
+    line-height: 50px;
+    font-size: 18px;
+    color: #DBDBDB;
+    letter-spacing: 1.5px;
+    position: absolute;
+    top:9%;
+}
+.titleIcon {
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    cursor: pointer;
+}
+.totalNumberCard{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    min-height: 69px;
+}
+.totalNumber {
+    width: 32%;
+    height: 100%;
+    margin-bottom: 10px;
+}
+.totalType{
+    width: 48%;
+    height: 100%;
+    margin-bottom: 10px;
+}
+.middleRow{
+    margin-bottom: 20px;
+}
+.middleCard{
+    cursor: pointer;
+}
+.resultContainer{
+    width: 100%;
+    height: 400px;
+    overflow-y: auto;
+}
+.resultCon {
+    width: 240px;
+    float: left;
+    margin: 7px;
+}
+.resultCon1{
+    width: 245px;
+    float: left;
+    margin: 7px;
+    cursor: pointer;
+    background: rgba(32, 52, 68, .7);
+}
+.resultInfoiconCard{
+    height: 80px;
+}
+.resultCon1Img {
+    width: 150px;
+    height: 150px;
+    display: block;
+    margin: 8px auto;
+}
+.searchModal {
+    width: 35%;
+    /* height: 280px; */
+    background: rgba(34, 40, 52, .7);
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    transform: translateX(-50%);
+    box-sizing: border-box;
+    padding: 18px;
+}
+.condition{
+    margin-bottom: 12px;
+}
+.label {
+    font-size: 18px;
+    color: #FFFFFF;
+    letter-spacing: 1.5px;
+    float: left;
+}
+.linkBtn{
+    position: relative;
+    top: 15%;
+    left: 1%;
+}
+.btnOk {
+    background: url('../../assets/common/button02.png') no-repeat;
+    background-size: 100% 100%;
+    background-position: 50% 50%;
+    display: block;
+    margin: 0 auto;
+    color: #fff;
+    width: 25%;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    transition: .3s;
+    border-radius: 6px;
+}
+.btnOk:hover{
+    background-size:300% 300%;
+    color: rgba(27, 79, 162);
+}
+.btnOk_b {
+    width: 50%;
+    height: 30px;
+    display: block;
+    margin: 0 auto;
+    line-height: 30px;
+    color: #fff;
+    cursor: pointer;
+    transition: .3s;
+    border-radius: 6px;
+    background: rgba(32, 52, 68, .7);
+}
+.btnOk_b:hover{
+    background-size:300% 300%;
+    color: #1890ff;
+}
+.indexLeft{
+    position: absolute;
+    left: 1%;
+    width: 26%;
+    top: 16%;
+}
+/* chrt */
+.chart{
+    width: 90%;
+    height: 100%;
+    margin: auto;
+    position: relative;
+}
+.chartTop {
+    width: 100%;
+    height: 20%;
+    margin: 0 auto;
+    position: relative;
+}
+.topTotal {
+    width: 25%;
+    height: 78px;
+    position: absolute;
+    right: 0;
+    top: 45%;
+}
+.topNumber{
+    font-size: 30px;
+    color: #0f8bb7;
+    letter-spacing: 1.25px;
+    line-height: 28px;
+}
+.chartCenter {
+    width: 100%;
+    height: 40%;
+    margin: 0 auto;
+}
+.chartBottom {
+    width: 100%;
+    height: 40%;
+    /* background: rgba(32, 52, 68, .7); */
+    margin: 0 auto;
+}
+.chartsContain{
+    box-sizing: border-box;
+    padding-right: 10px;
+}
+.chartsCard {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 300px;
+}
+.PieCard {
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    margin: 0 auto;
+    background: rgba(32, 52, 68, .7);
+}
+.PieCardTxt {
+    width: 320px;
+    height: 190px;
+    background: rgba(32, 52, 68, .7);
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+/* chartLabel */
+.chartLabel {
+    width: 120px;
+    float: left;
+    margin: 10px 20px;
+}
+.LabelBg {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+}
+.chartTxt {
+    font-size: 15px;
+    color: #A2A2A2;
+    letter-spacing: 1.25px;
+}
+.chartCon {
+    font-size: 12px;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+    margin-left: 30px;
+}
+.BarCard {
+    width: 98%;
+    height: 250px;
+    margin: 0 auto;
+}
+
+/* antd */
+.searchModal :global(.ant-radio-button-wrapper){
+    margin: 0 5px;
+    width: 23%;
+    background: rgba(32, 52, 68, .7);
+    color: #FFF;
+    border: 0;
+    outline: 0;
+    height: 30px;
+}
+.searchModal :global(.ant-radio-button-wrapper-checked) {
+    background: url('../../assets/common/tag.png') no-repeat;
+    background-size: 100% 100%;
+}
+.searchModal :global(.ant-radio-button-wrapper:not(:first-child)::before) {
+    width: 0;
+}
+.searchModal :global(.ant-radio-button-wrapper:first-child) {
+    border: 0;
+}
+.searchModal :global(.ant-radio-button-wrapper-checked:hover) {
+    color: #FFF;
+}
+.searchModal :global(.ant-input) {
+    background: rgba(32, 52, 68, .7);
+    color: #FFF;
+    border: 0;
+    outline: 0;
+    height: 30px;
+  }
+  .searchModal :global(.ant-select-selection), .selectTop :global(.ant-select-selection) {
+    background: rgba(32, 52, 68, .7);
+    border: 0;
+    outline: 0;
+    color: #FFF;
+    height: 30px;
+  }
+  .searchModal :global(.ant-select-arrow), .selectTop :global(.ant-select-arrow) {
+    color: #FFF;
+  }
+/* total */
+.total{
+    width: 90%;
+    height: 84%;
+    margin: auto;
+    background: url('../../assets/common/map.png') no-repeat center;
+    background-size: 98% 98%;
+    border: 1px solid #0F8BB7;
+    position: relative;
+    top: 8%;
+}
+.totalTop{
+    width: 100%;
+    height: 28%;
+    margin: 0 auto;
+    position: absolute;
+    top: -10%;
+}
+.totalLeft{
+    position: absolute;
+    left: 1%;
+    width: 26%;
+    top: 16%;
+}
+
+  /* info 一 屋一档 */
+  .info {
+      width: 90%;
+      height: 94%;
+      position: relative;
+      margin: 0 auto;
+  }
+  .infoTop{
+      height: 14%;
+  }
+.infoContent {
+    width: 100%;
+    /* height: 660px; */
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    height: 72%;
+}
+.infoLeft {
+    position: absolute;
+    left: 1%;
+    width: 23%;
+    height: 100%;
+}
+.infoCenter {
+    position: relative;
+    width: 436px;
+    height: 436px;
+    margin: auto;
+}
+.infoRight {
+    position: absolute;
+    right: 1%;
+    width: 22%;
+    height: 118%;
+    overflow: auto;
+}
+.infoBottom {
+    width: 45%;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 8%;
+}
+.infoLeftBg {
+    background: rgba(32, 52, 68, .7);
+    margin: 0 auto 10px auto;
+    padding: 2px 12px;
+    box-sizing: border-box;
+}
+.infoLeftBg img {
+    width: 288px;
+    height: 210px;
+    margin: auto;
+    display: block;
+}
+.infoLeftCon {
+    /* width: 345px; */
+    position: relative;
+    margin: 0 auto;
+}
+.infoLeftLabel {
+    font-size: 18px;
+    color: #0F8BB7;
+    letter-spacing: 1.5px;
+    margin-right: 10px;
+}
+.infoLeftTxt {
+    font-size: 18px;
+    color: #FFFFFF;
+    letter-spacing: 1.5px;
+}
+.infoLeftTime{
+    position: absolute;
+    right: 0;
+    top: 57%;
+    width: 130px;
+}
+.infoLeftTime :global(.ant-select-selection){
+    background: rgba(32, 52, 68, .7);
+    border: 0;
+    outline: 0;
+    color: #FFF;
+    height: 25px;
+  }
+  .infoLeftTime :global(.ant-select-arrow){
+    color: #FFF;
+  }
+  .infoBtn {
+    width: 130px;
+    height: 50px;
+    background: url('../../assets/common/button01.png') no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+    text-align: center;
+    line-height: 50px;
+    font-size: 18px;
+    color: #DBDBDB;
+    letter-spacing: 1.5px;
+    float: right;
+  }
+  .infoRightContainer {
+      position: relative;
+      margin-bottom: 10px;
+  }
+  .infoRightBtn {
+      border-radius: 6px;
+      background: rgba(32, 52, 68, .7);
+      font-size: 10px;
+      color: #DBDBDB;
+      letter-spacing: 0.83px;
+      position: absolute;
+      top: 17px;
+      right: 0;
+      box-sizing: border-box;
+      padding: 3px 6px;
+      cursor: pointer;
+    }
+    .infoRightCard {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+  .infoRightCard_l {
+      margin-right: 10px;
+  }
+  .infoRightCard_r {
+      flex: 1;
+  }
+  .infoLeftBg .line {
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin-bottom: 10px;
+  }
+  .infoRightContainer .middleRow{
+    margin-bottom: 10px;
+}
+/* indexModal */
+.indexModal {
+    width: 536px;
+    /* height: 280px; */
+    /* background: rgba(34, 40, 52, .7); */
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    transform: translateX(-50%);
+    box-sizing: border-box;
+    padding: 18px;
+}
+.modalClose {
+    position: absolute;
+    right: 0;
+    top: 13%;
+    background: rgba(255, 255, 255, .7);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color:#f00;
+    text-align: center;
+    line-height: 30px;
+    z-index: 1;
+    font-size: 20px;
+}
+.indexModalImg {
+    display: block;
+    width: 160px;
+    height: 120px;
+}
+.indexModalCard{
+    width: 190px;
+    height: 190px;
+    background: rgba(32, 52, 68, .7);
+    box-sizing: border-box;
+    padding: 8px;
+}
+.indexModalLabel{
+    font-size: 15px;
+    color: #0F8BB7;
+    letter-spacing: 1.25px;
+}
+.indexModalCon {
+    font-size: 15px;
+    color: #FDFDFD;
+    letter-spacing: 1.25px;
+}

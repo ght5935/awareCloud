@@ -1,0 +1,101 @@
+.index{
+    width: 90%;
+    height: 84%;
+    margin: auto;
+    background: url('../assets/common/map.png') no-repeat center;
+    background-size: 98% 98%;
+    border: 1px solid #0F8BB7;
+    position: relative;
+    top: 8%;
+}
+.indexTop{
+    width: 98%;
+    height: 28%;
+    margin: 0 auto;
+    position: absolute;
+    top: -10%;
+}
+
+.circleTest{
+    position: absolute;
+    left: 50%;
+    top:50%;
+    width: 400px;
+    height: 400px;
+    margin-left: -200px;
+    margin-top: -250px;
+}
+.card{
+    position: relative;
+    top:40px;
+    left:20px;
+    width: 200px;
+    height: 100px;
+}
+.left{
+    position: absolute;
+    left: 1%;
+    width: 26%;
+}
+.right{
+    position: absolute;
+    right: 1%;
+    width: 26%
+}
+.link{
+    position: absolute;
+    top: 20px;
+    display: block;
+    width: 12%;
+    cursor: pointer;
+}
+.link:nth-of-type(1){
+    left: 10%;
+}
+.link:nth-of-type(2){
+    left: 44%;
+}
+.link:nth-of-type(3){
+    left: 78%;
+}
+.link img{
+    width: 100%;
+}
+.middleRow{
+    margin-bottom: 10px;
+}
+.centerMap{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    background: #1a2238;
+    border-radius: 7px;
+    border: 2px solid #0F8BB7;
+    padding: 10px;
+}
+.indexBottom{
+    width: 45%;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.totalNumberCard{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    min-height: 69px;
+}
+.totalNumber {
+    width: 32%;
+    height: 100%;
+    margin-bottom: 10px;
+}
+.totalType{
+    width: 48%;
+    height: 100%;
+    margin-bottom: 10px;
+}

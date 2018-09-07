@@ -1,0 +1,119 @@
+
+img{
+  margin: 0;
+  padding: 0;
+}
+.loginContainer{
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+.title {
+  margin: 0 auto;
+  height: 24.8%;
+  width: 54%;
+  display: flex;
+  justify-content:space-between;
+}
+.title img {
+  display: block;
+  margin: 0 auto;
+}
+.title .line {
+  width: 2px;
+  height: 100%;
+}
+.titleText {
+  width: 56%;
+  height: 14.9%;
+  margin: 0 auto;
+}
+.titleText img{
+  display: inline-block;
+  margin: 0 auto;
+  width: 50%;
+  height: 100%;
+}
+.content {
+  width: 16.5%;
+  /* height: 30%; */
+  height: 35%;
+  margin: 0 auto;
+  background: url('../../assets/login/border.png') no-repeat top ;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.userImg {
+  display: block;
+  margin: 0 auto;
+  margin-top: 15%;
+}
+.remeber{
+  color: #098FBC;
+  font-family: PingFangSC-Light;
+  font-size: 13px;
+}
+.loginForm{
+  position: relative;
+}
+.loginlabel {
+  position: relative;
+  width: 70%;
+  top: 20px;
+  left: 14%;
+  display: block;
+}
+.loginPut{
+  display: flex;
+  align-items: center;
+  border: 1px solid #098FBC;
+  height: 34px;
+  position: relative;
+}
+.loginPut::after{
+  display: block;
+  content: "";
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: rotate(45deg) translate(-15px,-0px);
+  border-right: 1px solid #098FBC;
+  background: #031328;
+}
+.loginPut .icon{
+  color: #098FBC;
+  display:inline;
+  font-size: 20px;
+  padding: 6px 9px;
+}
+.loginButton {
+  font-family: PingFangSC-Light;
+  width: 70%;
+  height: 36px;
+  display: block;
+  font-size: 24px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  background: #098FBC;
+  margin: 0 auto;
+  border: 0;
+}
+.loginlabel :global(.ant-input) {
+  background: #0e5370;
+  border: 0;
+  outline: 0;
+  border-radius: 0;
+  color: #FFF;
+  height: 22px;
+  margin-right: 4px;
+}
+/* .loginlabel .has-error :global(  .ant-input:focus) {
+  border-color: #098FBC;
+} */
+.remeber :global(.ant-checkbox-inner){
+  border: 1px solid #098FBC;
+  background: transparent;
+}

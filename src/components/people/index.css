@@ -1,0 +1,555 @@
+
+
+.selectTop {
+    text-align: center;
+}
+.title {
+    font-size: 20px;
+    color: #FFFFFF;
+    letter-spacing: 1.67px;
+    height: 20px;
+    width: 88px;
+    line-height: 0px;
+    display: block;
+    margin: 0 auto;
+}
+.btn {
+    width: 130px;
+    height: 50px;
+    background: url('../../assets/common/button01.png') no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+    text-align: center;
+    line-height: 50px;
+    font-size: 18px;
+    color: #DBDBDB;
+    letter-spacing: 1.5px;
+    position: absolute;
+    top:9%;
+}
+.titleIcon {
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    cursor: pointer;
+}
+
+.middleRow{
+    margin-bottom: 20px;
+}
+.middleCard{
+    cursor: pointer;
+}
+.resultContainer{
+    width: 100%;
+    height: 400px;
+    overflow-y: auto;
+}
+.resultCon {
+    width: 160px;
+    float: left;
+    margin: 7px;
+}
+.resultCon1{
+    width: 160px;
+    float: left;
+    margin: 7px;
+    background: rgba(32, 52, 68, .7);
+}
+.resultInfoiconCard{
+    height: 80px;
+}
+.resultCon1Img {
+    width: 150px;
+    height: 120px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+.searchModal {
+    width: 536px;
+    /* height: 280px; */
+    background: rgba(34, 40, 52, .7);
+    position: absolute;
+    left: 50%;
+    top: calc(30% - 10px);
+    transform: translateX(-50%);
+    border: 13px solid transparent;
+    border-image: url(../../assets/common/aim.png) 13 13 round;
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-duration: .1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2); 
+    /*animation-play-state: paused; */
+}
+.condition{
+    /* display: flex; */
+    margin-bottom: 12px;
+}
+.label {
+    font-size: 16px;
+    color: #FFFFFF;
+    letter-spacing: 1.5px;
+    float: left;
+}
+.btnOk {
+    background: url('../../assets/common/button02.png') no-repeat;
+    background-size: 100% 100%;
+    background-position: 50% 50%;
+    display: block;
+    margin: 0 auto;
+    color: #fff;
+    width: 20%;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    transition: .3s;
+    border-radius: 6px;
+}
+.btnOk:hover{
+    background-size:300% 300%;
+    color: rgba(27, 79, 162);
+}
+.btnOk_b {
+    width: 50%;
+    height: 30px;
+    display: block;
+    margin: 0 auto;
+    line-height: 30px;
+    color: #fff;
+    cursor: pointer;
+    transition: .3s;
+    border-radius: 6px;
+    background: rgba(32, 52, 68, .7);
+}
+.btnOk_b:hover{
+    background-size:300% 300%;
+    color: #1890ff;
+}
+.indexLeft{
+    position: absolute;
+    left: 1%;
+    width: 26%;
+}
+/* chrt */
+.topTotal {
+    width: 25%;
+    height: 78px;
+    position: absolute;
+    top:9%;
+    right: 2%;
+}
+.topNumber{
+    font-size: 30px;
+    color: #0f8bb7;
+    letter-spacing: 1.25px;
+    line-height: 28px;
+}
+.chartTop {
+    width: 98%;
+    height: 22%;
+    margin: 0 auto;
+}
+.chartCenter {
+    width: 98%;
+    height: 40%;
+    margin: 0 auto;
+}
+.chartBottom {
+    width: 98%;
+    height: 30%;
+    /* background: rgba(32, 52, 68, .7); */
+    margin: 0 auto;
+}
+.chartsContain{
+    box-sizing: border-box;
+    padding-right: 10px;
+}
+.chartsCard {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 300px;
+}
+.PieCard {
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    margin: 0 auto;
+    background: rgba(32, 52, 68, .7);
+}
+.PieCardTxt {
+    width: 320px;
+    height: 190px;
+    background: rgba(32, 52, 68, .7);
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+/* chartLabel */
+.chartLabel {
+    width: 120px;
+    float: left;
+    margin: 10px 20px;
+}
+.LabelBg {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+}
+.chartTxt {
+    font-size: 15px;
+    color: #A2A2A2;
+    letter-spacing: 1.25px;
+}
+.chartCon {
+    font-size: 12px;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+    margin-left: 30px;
+}
+.BarCard {
+    width: 98%;
+    height: 250px;
+    margin: 0 auto;
+}
+
+/* antd */
+
+.searchModal :global(.ant-radio-button-wrapper){
+    margin: 0 5px;
+    width: 31%;
+    background: rgba(32, 52, 68, .7);
+    color: #FFF;
+    border: 0;
+    outline: 0;
+    height: 30px;
+}
+.searchModal :global(.ant-radio-button-wrapper-checked) {
+    background: url('../../assets/common/tag.png') no-repeat;
+    background-size: 100% 100%;
+}
+.tags :global(.ant-radio-button-wrapper){
+    margin-bottom: 10px;
+}
+.searchModal :global(.ant-radio-button-wrapper:not(:first-child)::before) {
+    width: 0;
+}
+.searchModal :global(.ant-radio-button-wrapper:first-child) {
+    border: 0;
+}
+.searchModal :global(.ant-radio-button-wrapper-checked:hover) {
+    color: #FFF;
+}
+.searchModal :global(.ant-input) {
+    background: rgba(32, 52, 68, .7);
+    color: #FFF;
+    border: 0;
+    outline: 0;
+    height: 30px;
+  }
+  .searchModal :global(.ant-select-selection), .selectTop :global(.ant-select-selection) {
+    background: rgba(32, 52, 68, .7);
+    border: 0;
+    outline: 0;
+    color: #FFF;
+    height: 30px;
+  }
+  .searchModal :global(.ant-select-arrow), .selectTop :global(.ant-select-arrow) {
+    color: #FFF;
+  }
+/* total */
+.totalTop{
+    width: 98%;
+    height: 28%;
+    margin: 0 auto;
+}
+.totalLeft{
+    position: absolute;
+    left: 1%;
+    width: 26%;
+}
+
+  /* info 一 屋一档 */
+.title{
+    font-size: 20px;
+    color: #FFFFFF;
+    letter-spacing: 1.67px;
+    height: 20px;
+    width: 88px;
+    line-height: 0px;
+    display: block;
+    margin: 0 auto;
+}
+.infoContent {
+    width: 100%;
+    height: 660px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+.infoLeft {
+    position: absolute;
+    left: 1%;
+    width: 23%;
+}
+.infoCenter {
+    position: relative;
+    width: 436px;
+    height: 436px;
+    margin: auto;
+}
+.infoRight {
+    position: absolute;
+    right: 1%;
+    width: 22%;
+}
+.infoBottom {
+    width: 45%;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.infoLeftBg {
+    /* width: 328px; */
+    background: rgba(32, 52, 68, .7);
+    margin: 0 auto 10px auto;
+    padding: 2px 12px;
+    box-sizing: border-box;
+}
+.infoLeftBg img {
+    width: 288px;
+    height: 210px;
+    margin: auto;
+    display: block;
+}
+.infoLeftCon {
+    width: 328px;
+    position: relative;
+    margin: 0 auto;
+}
+.infoLeftLabel {
+    font-size: 18px;
+    color: #0F8BB7;
+    letter-spacing: 1.5px;
+    margin-right: 10px;
+}
+.infoLeftTxt {
+    font-size: 18px;
+    color: #FFFFFF;
+    letter-spacing: 1.5px;
+}
+.infoLeftTime{
+    position: absolute;
+    right: 0;
+    top: 57%;
+    width: 130px;
+}
+.infoLeftTime :global(.ant-select-selection){
+    background: rgba(32, 52, 68, .7);
+    border: 0;
+    outline: 0;
+    color: #FFF;
+    height: 25px;
+  }
+  .infoLeftTime :global(.ant-select-arrow){
+    color: #FFF;
+  }
+  .infoBtn {
+    width: 130px;
+    height: 50px;
+    background: url('../../assets/common/button01.png') no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+    text-align: center;
+    line-height: 50px;
+    font-size: 18px;
+    color: #DBDBDB;
+    letter-spacing: 1.5px;
+    float: right;
+  }
+  .infoRightContainer {
+      position: relative;
+      margin-bottom: 10px;
+  }
+  .infoRightBtn {
+      border-radius: 6px;
+      background: rgba(32, 52, 68, .7);
+      font-size: 10px;
+      color: #DBDBDB;
+      letter-spacing: 0.83px;
+      position: absolute;
+      top: 17px;
+      right: 0;
+      box-sizing: border-box;
+      padding: 3px 6px;
+      cursor: pointer;
+    }
+    .infoRightCard {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+  .infoRightCard_l {
+      margin-right: 10px;
+  }
+  .infoRightCard_r {
+      flex: 1;
+  }
+  .infoLeftBg .line {
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin-bottom: 10px;
+  }
+  .infoRightContainer .middleRow{
+    margin-bottom: 10px;
+}
+/* indexModal */
+.indexModal {
+    width: 536px;
+    /* height: 280px; */
+    /* background: rgba(34, 40, 52, .7); */
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    transform: translateX(-50%);
+    box-sizing: border-box;
+    padding: 18px;
+}
+.modalClose {
+    position: absolute;
+    right: 0;
+    top: 13%;
+    background: rgba(255, 255, 255, .7);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color:#f00;
+    text-align: center;
+    line-height: 30px;
+    z-index: 1;
+    font-size: 20px;
+}
+.indexModalImg {
+    display: block;
+    width: 160px;
+    height: 120px;
+}
+.indexModalCard{
+    width: 190px;
+    height: 190px;
+    background: rgba(32, 52, 68, .7);
+    box-sizing: border-box;
+    padding: 8px;
+}
+.indexModalLabel{
+    font-size: 15px;
+    color: #0F8BB7;
+    letter-spacing: 1.25px;
+}
+.indexModalCon {
+    font-size: 15px;
+    color: #FDFDFD;
+    letter-spacing: 1.25px;
+}
+
+
+.radios{
+    text-align: center;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    
+}
+
+.fade-enter {
+    opacity: 0;
+    animation-duration: .5s;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+    animation-play-state: paused;
+  }
+  
+  .fade-appear {
+    opacity: 0;
+    animation-duration: .5s;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+    animation-play-state: paused;
+  }
+  
+  .fade-leave {
+    animation-duration: .5s;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+    animation-play-state: paused;
+  }
+  
+  .fade-enter.fade-enter-active {
+    animation-name: fadeIn;
+    animation-play-state: running;
+  }
+  
+  .fade-appear.fade-appear-active {
+    animation-name: fadeIn;
+    animation-play-state: running;
+  }
+  
+  .fade-leave.fade-leave-active {
+    animation-name: fadeOut;
+    animation-play-state: running;
+  }
+  
+  @keyframes fadeIn {
+    0% {
+        top: 25%;
+      opacity: .5;
+    }
+    100% {
+        top: 25%;
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+     
+    }
+  }
+
+  .carCount :global(.ant-radio-button-wrapper){
+      width: 19%;
+      border-radius: 6px;
+      text-align: center;
+      padding: 0;
+  }
+.condition :global(.ant-radio-inner){
+    width:12px;
+    height: 12px;
+    background: #041B2D;
+    border: none;
+    vertical-align: middle;
+}
+.condition :global(.ant-radio-inner:after){
+    left: 2px;
+    top: 2px;
+}
+.condition :global(.ant-radio){
+    vertical-align: middle;
+}
+.condition :global(.ant-radio-button-wrapper:last-child){
+    border-radius: 4px;
+}
+.condition :global(.ant-radio-button-wrapper:first-child){
+    border-radius: 4px;
+}
+
