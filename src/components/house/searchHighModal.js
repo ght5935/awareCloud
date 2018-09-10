@@ -154,7 +154,7 @@ class HighSearchModal extends React.Component {
             payload: {
                 houseHome: {
                     ...houseHome,
-                    // urbanList: [],
+                    urbanList: value ? houseHome.urbanList : [],
                     villageList: [],
                     buildList: [],
                     UnitList: [],
@@ -187,6 +187,11 @@ class HighSearchModal extends React.Component {
             payload: {
                 houseHome: {
                     ...houseHome,
+                    villageList: value ? houseHome.villageList : [],
+                    buildList: [],
+                    UnitList: [],
+                    FloorList: [],
+                    RoomList: [],
                     houseHomeParams: {
                         ...houseHomeParams,
                         orgunitId: value,
@@ -213,6 +218,10 @@ class HighSearchModal extends React.Component {
             payload: {
                 houseHome: {
                     ...houseHome,
+                    buildList: value ? houseHome.buildList : [],
+                    UnitList: [],
+                    FloorList: [],
+                    RoomList: [],
                     houseHomeParams: {
                         ...houseHomeParams,
                         village: value,
@@ -238,6 +247,9 @@ class HighSearchModal extends React.Component {
             payload: {
                 houseHome: {
                     ...houseHome,
+                    UnitList: value ? houseHome.UnitList : [],
+                    FloorList: [],
+                    RoomList: [],
                     houseHomeParams: {
                         ...houseHomeParams,
                         building: value,
@@ -262,6 +274,8 @@ class HighSearchModal extends React.Component {
             payload: {
                 houseHome: {
                     ...houseHome,
+                    FloorList: value ? houseHome.FloorList : [],
+                    RoomList: [],
                     houseHomeParams: {
                         ...houseHomeParams,
                         unit: value,
@@ -285,6 +299,7 @@ class HighSearchModal extends React.Component {
             payload: {
                 houseHome: {
                     ...houseHome,
+                    RoomList: value ? houseHome.RoomList : [],
                     houseHomeParams: {
                         ...houseHomeParams,
                         floor: value,
