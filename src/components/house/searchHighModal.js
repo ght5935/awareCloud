@@ -179,7 +179,7 @@ class HighSearchModal extends React.Component {
                     ...houseHome,
                     houseHomeParams: {
                         ...houseHomeParams,
-                        building: value - 0
+                        building: value
                     }
                 }
             }
@@ -200,7 +200,7 @@ class HighSearchModal extends React.Component {
                     ...houseHome,
                     houseHomeParams: {
                         ...houseHomeParams,
-                        unit: value - 0
+                        unit: value
                     }
                 }
             }
@@ -221,7 +221,7 @@ class HighSearchModal extends React.Component {
                     ...houseHome,
                     houseHomeParams: {
                         ...houseHomeParams,
-                        floor: value - 0
+                        floor: value
                     }
                 }
             }

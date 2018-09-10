@@ -58,7 +58,7 @@ class Search extends React.Component {
     })
   }
   componentWillUnmount() {
-    console.log('%ccar清除参数','color:red')
+    console.log('%ccar清除参数', 'color:red')
     const carSearch = this.props.car.carSearch;
     const { carSearchParams } = carSearch;
     this.props.dispatch({
@@ -93,7 +93,8 @@ class Search extends React.Component {
             plate_number: '',
             plate_type: ''
           }
-        }
+        },
+        searchHouseVisible: false
       }
     })
   }

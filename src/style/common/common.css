@@ -214,7 +214,7 @@ body{
 
 /* component InfoCard default */
 .infoCard {
-    height: 70px;
+    min-height: 70px;
     position: relative;
 }
 .titleLabel {

@@ -51,7 +51,8 @@ class InfoPersonId extends React.Component {
                                     <Row gutter={10} className={styles.middleRow}>
                                         <Col span={24}>
                                             <div className={styles.infoLeftBg} >
-                                                <img src={r} style={{ width: 115, height: 154 }} alt="" />
+                                                {/* <img src={r} style={{ width: 115, height: 154 }} alt="" /> */}
+                                                <img src={v.img && v.img.length > 0 ? v.img[0] : ''} style={{ width: 115, height: 154 }} alt="" />
                                             </div>
                                         </Col>
                                     </Row>

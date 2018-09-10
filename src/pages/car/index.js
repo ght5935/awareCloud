@@ -53,7 +53,8 @@ class Index extends React.Component {
             type: 'people/success',
             payload: {
                 mapOrgPerceiveAndFace: [],
-                todayFace: []
+                todayFace: [],
+                searchHouseVisible: false
             }
         })
     }

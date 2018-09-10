@@ -42,10 +42,11 @@ class InfoPerson extends React.Component {
                                     title={"照片信息"}
                                 />
                             </div>
-                            <div className={styles.infoRightBtn} onClick={this.openDetail.bind(this,item.id)}>详情 V </div>
+                            <div className={styles.infoRightBtn} onClick={this.openDetail.bind(this, item.id)}>详情 V </div>
                             <div className={styles.infoRightCard}>
                                 <div className={styles.infoRightCard_l}>
-                                    <img src={r} style={{ width: 115, height: 154 }} alt="" />
+                                    {/* <img src={r} style={{ width: 115, height: 154 }} alt="" /> */}
+                                    <img src={item.img && item.img.length > 0 ? item.img[0] : ''} style={{ width: 115, height: 154 }} alt="" />
                                 </div>
                                 <div className={styles.infoRightCard_r}>
                                     <div className={styles.infoLeftBg}>

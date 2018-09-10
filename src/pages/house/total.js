@@ -55,7 +55,7 @@ class Total extends React.Component {
 
   }
   componentWillUnmount() {
-    console.log('%chouse清除参数','color:red')
+    console.log('%chouse清除参数', 'color:red')
     const houseHome = this.props.house.houseHome;
     const { houseHomeParams } = houseHome;
     this.props.dispatch({
@@ -88,9 +88,10 @@ class Total extends React.Component {
           houseHomeParams: {
             ...this.props.global.houseHome.houseHomeParams,
             villageName: '',
-            attribute_id:''
+            attribute_id: ''
           }
-        }
+        },
+        searchHouseVisible: false
       }
     });
   }

@@ -138,7 +138,7 @@ class Chart extends React.Component {
                                                     <ChartLabel
                                                         key={idx}
                                                         titLabel={item.houseAttribute}
-                                                        titCon={item.count}
+                                                        titCon={`${(item.count/100).toFixed(2)}%`}
                                                     >
                                                         <span className={styles.LabelBg} style={{ background: `${item.htmlColor}` }}></span>
                                                     </ChartLabel>)

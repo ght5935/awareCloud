@@ -78,7 +78,8 @@ class People extends React.Component {
             type: 'people/success',
             payload: {
                 mapOrgPerceiveAndFace: [],
-                todayFace: []
+                todayFace: [],
+                searchHouseVisible: false
             }
         })
     }
@@ -131,7 +132,7 @@ class People extends React.Component {
                     <div className={styles.left}>
                         <Card titleLeft={'各社区人口'}>
                             <Row gutter={20}>
-                                {this.props.mapOrgCount.map((v,i) => (
+                                {this.props.mapOrgCount.map((v, i) => (
                                     <Col className={styles.middleRow} span={8} key={i}>
                                         <InfoCard
                                             titleLabel={v.name}
@@ -144,7 +145,7 @@ class People extends React.Component {
                         </Card>
                         <Card titleLeft={'人口标签'}>
                             <Row gutter={20}>
-                                {this.props.mapTagCount.map((v,i) => (
+                                {this.props.mapTagCount.map((v, i) => (
                                     <Col span={12} className={styles.middleRow} key={i}>
                                         <TotalCard
                                             totalLabel={v.name}

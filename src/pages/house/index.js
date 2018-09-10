@@ -27,6 +27,14 @@ class Index extends React.Component {
       type: 'house/getHouseAmountByVillage'
     })
   }
+  componentWillUnmount() {
+    this.props.dispatch({
+      type: 'global/success',
+      payload: {
+        searchHouseVisible: false,
+      }
+    })
+  }
   searchModalClick = () => {
     this.props.dispatch({
       type: 'global/success',

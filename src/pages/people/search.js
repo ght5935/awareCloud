@@ -80,7 +80,7 @@ class SearchResult extends React.Component {
   componentWillUnmount() {
     var _this = this;
     document.removeEventListener('click', docClick.bind(this, _this))
-    console.log('%cpeople清除参数','color:red')
+    console.log('%cpeople清除参数', 'color:red')
     const totalSearchParams = this.props.people.totalSearchParams
     window.g_app._store.dispatch({
       type: 'people/success',
@@ -113,7 +113,8 @@ class SearchResult extends React.Component {
           tag: '',
           idCard: '',
           name: ''
-        }
+        },
+        searchHouseVisible: false
       }
     })
   }

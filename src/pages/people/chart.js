@@ -118,7 +118,7 @@ class Chart extends React.Component {
                                             titLabel={this.props.people.personChart && this.props.people.personChart.genderData ?
                                                 this.props.people.personChart.genderData[idx].name : []}
                                             titCon={this.props.people.personChart && this.props.people.personChart.genderData ?
-                                                this.props.people.personChart.genderData[idx].count : []}
+                                                `${(this.props.people.personChart.genderData[idx].count / 100).toFixed(2)}%` : 0}
                                             key={idx}>
                                             <span className={styles.LabelBg} style={{ background: `${colors}` }}></span>
                                         </ChartLabel>)
@@ -156,7 +156,7 @@ class Chart extends React.Component {
                                             titLabel={this.props.people.personChart && this.props.people.personChart.censusData ?
                                                 this.props.people.personChart.censusData[idx].name : []}
                                             titCon={this.props.people.personChart && this.props.people.personChart.censusData ?
-                                                this.props.people.personChart.censusData[idx].count : []}
+                                                `${(this.props.people.personChart.censusData[idx].count / 100).toFixed(2)}%` : 0}
                                             key={idx}>
                                             <span className={styles.LabelBg} style={{ background: `${colors}` }}></span>
                                         </ChartLabel>)
@@ -195,7 +195,7 @@ class Chart extends React.Component {
                                             titLabel={this.props.people.personChart && this.props.people.personChart.ageData ?
                                                 this.props.people.personChart.ageData[idx].name : []}
                                             titCon={this.props.people.personChart && this.props.people.personChart.ageData ?
-                                                this.props.people.personChart.ageData[idx].count : []}
+                                                `${(this.props.people.personChart.ageData[idx].count / 100).toFixed(2)}%` : 0}
                                             key={idx}>
                                             <span className={styles.LabelBg} style={{ background: `${colors}` }}></span>
                                         </ChartLabel>)
