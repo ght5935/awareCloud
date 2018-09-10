@@ -112,7 +112,12 @@ export default {
                     payload: {
                         houseHome: {
                             ...houseHome,
-                            urbanList: result
+                            urbanList: result,
+                            villageList: [],
+                            buildList: [],
+                            UnitList: [],
+                            FloorList: [],
+                            RoomList: [],
                         }
                     }
                 })
@@ -129,7 +134,11 @@ export default {
                     payload: {
                         houseHome: {
                             ...houseHome,
-                            villageList: result
+                            villageList: result,
+                            buildList: [],
+                            UnitList: [],
+                            FloorList: [],
+                            RoomList: [],
                         }
                     }
                 })
@@ -150,7 +159,10 @@ export default {
                     payload: {
                         houseHome: {
                             ...houseHome,
-                            buildList: result
+                            buildList: result,
+                            UnitList: [],
+                            FloorList: [],
+                            RoomList: [],
                         }
                     }
                 })
@@ -171,7 +183,9 @@ export default {
                     payload: {
                         houseHome: {
                             ...houseHome,
-                            UnitList: result
+                            UnitList: result,
+                            FloorList: [],
+                            RoomList: [],
                         }
                     }
                 })
@@ -193,7 +207,8 @@ export default {
                     payload: {
                         houseHome: {
                             ...houseHome,
-                            FloorList: result
+                            FloorList: result,
+                            RoomList: [],
                         }
                     }
                 })
