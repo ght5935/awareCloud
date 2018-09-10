@@ -96,17 +96,6 @@
     color: #FFF;
   }
 
-  .searchBtn{
-    position: absolute;
-    top: 55px;
-    display: block;
-    width: 12%;
-    left: 50%;
-    transform: translateX(-50%)
-  }
-  .searchBtn img{
-      width: 100%;
-  }
   .linkBtn{
     position: relative;
     top: 15%;

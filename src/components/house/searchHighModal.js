@@ -105,6 +105,46 @@ class HighSearchModal extends React.Component {
             }
         })
     }
+    onCancel = () => {
+        const houseHome = this.props.house.houseHome;
+        const { houseHomeParams } = houseHome;
+        this.props.dispatch({
+            type: 'house/success',
+            payload: {
+                houseHome: {
+                    ...houseHome,
+                    houseHomeParams: {
+                        ...houseHomeParams,
+                        burg: '',
+                        villageName: '',
+                        orgunitId: '',
+                        village: '',
+                        building: '',
+                        unit: '',
+                        floor: '',
+                        room: '',
+                        type_id: '',
+                        attribute_id: ''
+                    }
+                }
+            }
+        })
+
+        this.props.dispatch({
+            type: 'global/success',
+            payload: {
+                houseHome: {
+                    ...this.props.global.houseHome,
+                    houseHomeParams: {
+                        ...this.props.global.houseHome.houseHomeParams,
+                        villageName: '',
+                        attribute_id: ''
+                    }
+                },
+                searchHouseVisible: false
+            }
+        })
+    }
     // form
     onSelectBurg = (value) => {
         const houseHome = this.props.house.houseHome;
@@ -461,10 +501,14 @@ class HighSearchModal extends React.Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col span={24} style={{ textAlign: 'center' }}>
+                    <Col span={12} style={{ textAlign: 'center' }}>
                         <Link to='/house/total' replace>
                             <span className={styles.btnOk} onClick={this.onSearch}>搜 索</span>
                         </Link>
+
+                    </Col>
+                    <Col span={12} style={{ textAlign: 'center' }}>
+                        <span className={styles.btnOk} onClick={this.onCancel}>取 消</span>
                     </Col>
                 </Row>
             </div>

@@ -213,7 +213,43 @@ class HighSearchModal extends React.Component {
             }
         })
     }
-
+    onCancel = () => {
+        const totalSearchParams = this.props.people.totalSearchParams
+        window.g_app._store.dispatch({
+            type: 'people/success',
+            payload: {
+                allTag: this.props.global.allTag,
+                totalSearchParams: {
+                    ...totalSearchParams,
+                    name: '',
+                    idCard: '',
+                    gender: '',
+                    nation: '',
+                    tag: '',
+                    partisanId: '',
+                    phone: '',
+                    nation: '',
+                    carCount: '',
+                    partisanId: '',
+                    marital_status: '',
+                    census: '',
+                    orgunitId: ''
+                }
+            }
+        })
+        this.props.dispatch({
+            type: 'global/success',
+            payload: {
+                peopleSearch: {
+                    ...this.props.global.peopleSearch,
+                    tag: '',
+                    idCard: '',
+                    name: ''
+                },
+                searchHouseVisible: false
+            }
+        })
+    }
     render() {
         return (
             <div className={styles.searchModal} data-id="icon_btn">
@@ -313,10 +349,13 @@ class HighSearchModal extends React.Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col span={24} style={{ textAlign: 'center' }}>
+                    <Col span={12} style={{ textAlign: 'center' }}>
                         <Link to='/people/search' replace>
                             <span className={styles.btnOk} onClick={this.onBtnClick}>搜 索</span>
                         </Link>
+                    </Col>
+                    <Col span={12} style={{ textAlign: 'center' }}>
+                        <span className={styles.btnOk} onClick={this.onCancel}>取 消</span>
                     </Col>
                 </Row>
             </div>

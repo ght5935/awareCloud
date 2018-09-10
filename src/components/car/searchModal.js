@@ -247,6 +247,46 @@ class SearchModal extends React.Component {
             }
         })
     }
+    onCancel = () => {
+        const carSearch = this.props.car.carSearch;
+        const { carSearchParams } = carSearch;
+        this.props.dispatch({
+            type: 'car/success',
+            payload: {
+                carSearch: {
+                    ...carSearch,
+                    carSearchParams: {
+                        ...carSearchParams,
+                        province: '',
+                        plate_number: '',
+                        model: '',
+                        brand: '',
+                        color: '',
+                        name: '',
+                        phone: '',
+                        orgunitId: '',
+                        plate_type: ''
+                    }
+                }
+            }
+        })
+        this.props.dispatch({
+            type: 'global/success',
+            payload: {
+                carSearch: {
+                    ...this.props.global.carSearch,
+                    carSearchParams: {
+                        ...this.props.global.carSearch.carSearchParams,
+                        name: '',
+                        province: '',
+                        plate_number: '',
+                        plate_type: ''
+                    }
+                },
+                searchHouseVisible: false
+            }
+        })
+    }
     render() {
         const car = this.props.car;
         const carSearch = this.props.car.carSearch;
@@ -381,10 +421,13 @@ class SearchModal extends React.Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col span={24} style={{ textAlign: 'center' }}>
+                    <Col span={12} style={{ textAlign: 'center' }}>
                         <Link to='/car/search' replace>
                             <span className={styles.btnOk} onClick={this.onSearch}>搜 索</span>
                         </Link>
+                    </Col>
+                    <Col span={12} style={{ textAlign: 'center' }}>
+                        <span className={styles.btnOk} onClick={this.onCancel}>取 消</span>
                     </Col>
                 </Row>
             </div>

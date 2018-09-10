@@ -118,9 +118,7 @@ class People extends React.Component {
                                 <span className={styles.title} style={{ fontSize: 15 }}>-人口搜索</span>
                             </Col>
                         </Row>
-                        <span className={styles.searchBtn} data-id="icon_btn" onClick={this.searchModalClick}>
-                            <img src={searchIcon} alt="" />
-                        </span>
+                        <img src={searchIcon} className={styles.titleIcon} onClick={this.searchModalClick} data-id="icon_btn" />
                     </Slogen>
                     <div className={styles.linkBtn}>
                         <Link to='/people/chart'>
