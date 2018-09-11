@@ -97,6 +97,24 @@ class SearchModal extends React.Component {
         //     type: 'car/getCar'
         // })
     }
+    onCancel = () => {
+        this.props.dispatch({
+            type: 'global/success',
+            payload: {
+                carSearch: {
+                    ...this.props.global.carSearch,
+                    carSearchParams: {
+                        ...this.props.global.carSearch.carSearchParams,
+                        name: '',
+                        province: '',
+                        plate_number: '',
+                        plate_type: ''
+                    }
+                },
+                searchModalVisiable: false
+            }
+        })
+    }
     render() {
         const data = this.props.global
         const carSearch = this.props.global.carSearch;
@@ -149,10 +167,13 @@ class SearchModal extends React.Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col span={24} style={{ textAlign: 'center' }}>
+                    <Col span={12} style={{ textAlign: 'center' }}>
                         <Link to='/car/search'>
                             <span className={styles.btnOk} onClick={this.onSearch}>搜 索</span>
                         </Link>
+                    </Col>
+                    <Col span={12} style={{ textAlign: 'center' }}>
+                        <span className={styles.btnOk} onClick={this.onCancel}>取 消</span>
                     </Col>
                 </Row>
             </div>

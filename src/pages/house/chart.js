@@ -19,7 +19,9 @@ import searchIcon from '../../assets/common/search-icon.png'
 
 const Option = Select.Option;
 class Chart extends React.Component {
-
+    state = {
+        houseTypeTotal: ''
+    }
     componentDidMount() {
         this.props.dispatch({
             type: 'house/getAllVillage'
@@ -44,12 +46,48 @@ class Chart extends React.Component {
             type: 'house/getVillageChart'
         })
     }
+    renderTypeLabel = data => {
+        let typeData = data ? data : []
+        let total = ''
+        return typeData.map((item, idx) => {
+            total += Number(item.count)
+            console.log(total, '========')
+            return <ChartLabel
+                key={idx}
+                titLabel={item.houseAttribute}
+                titCon={`${(item.count / total).toFixed(2)}%`}
+            >
+                <span className={styles.LabelBg} style={{ background: `${item.htmlColor}` }}></span>
+            </ChartLabel>
+        }
+        )
+    }
     tooltipType = (props) => {
         const { payload } = props
         return (
             payload.map((entry, index) => (
                 <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>
                     <p >{`${entry.payload.houseAttribute}: ${entry.payload.count}`}</p>
+                </div>
+            ))
+        )
+    }
+    tooltipType1 = (props) => {
+        const { payload } = props
+        return (
+            payload.map((entry, index) => (
+                <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>
+                    <p >{`${entry.payload.houseAttention}: ${entry.payload.count}`}</p>
+                </div>
+            ))
+        )
+    }
+    tooltipType2 = (props) => {
+        const { payload } = props
+        return (
+            payload.map((entry, index) => (
+                <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>
+                    <p >{`${entry.payload.houseType}: ${entry.payload.count}`}</p>
                 </div>
             ))
         )
@@ -133,17 +171,7 @@ class Chart extends React.Component {
                                             </ResponsiveContainer>
                                         </div>
                                         <div className={styles.PieCardTxt}>
-                                            {
-                                                chartData.houseAttributeCountDataList ? chartData.houseAttributeCountDataList.map((item, idx) => (
-                                                    <ChartLabel
-                                                        key={idx}
-                                                        titLabel={item.houseAttribute}
-                                                        titCon={`${(item.count/100).toFixed(2)}%`}
-                                                    >
-                                                        <span className={styles.LabelBg} style={{ background: `${item.htmlColor}` }}></span>
-                                                    </ChartLabel>)
-                                                ) : ''
-                                            }
+                                            {this.renderTypeLabel(chartData.houseAttributeCountDataList)}
                                         </div>
                                     </div>
                                 </Card>
@@ -167,7 +195,11 @@ class Chart extends React.Component {
                                                 </defs>
                                                 <CartesianGrid stroke="#3F576F" />
                                                 <XAxis dataKey="houseAttention" stroke="#DBDBDB" />
-                                                <Tooltip cursor={{ fill: 'rgba(0,0,0,.2)' }} wrapperStyle={{ background: 'rgba(255,255,255,.3)' }} />
+                                                <Tooltip
+                                                    cursor={{ fill: 'rgba(0,0,0,.2)' }}
+                                                    wrapperStyle={{ background: 'rgba(255,255,255,.3)' }}
+                                                    content={this.tooltipType1}
+                                                />
                                                 <Bar dataKey="count" barSize={40} fill="url(#colorUv)">
                                                     <LabelList dataKey="count" position="center" fill="#DBDBDB" />
                                                 </Bar>
@@ -189,7 +221,11 @@ class Chart extends React.Component {
                                         <BarChart data={chartData.houseTypeCountDataList}>
                                             <CartesianGrid stroke="#3F576F" />
                                             <XAxis dataKey="houseType" stroke="#DBDBDB" />
-                                            <Tooltip cursor={{ fill: 'rgba(0,0,0,.2)' }} wrapperStyle={{ background: 'rgba(255,255,255,.3)' }} />
+                                            <Tooltip
+                                                cursor={{ fill: 'rgba(0,0,0,.2)' }}
+                                                wrapperStyle={{ background: 'rgba(255,255,255,.3)' }}
+                                                content={this.tooltipType2}
+                                            />
                                             <Bar dataKey="count" fill="#3D938D" barSize={40}>
                                                 <LabelList dataKey="count" position="center" fill="#DBDBDB" />
                                             </Bar>

@@ -56,6 +56,20 @@ class HighSearchModal extends React.Component {
             }
         })
     }
+    onCancel = () => {
+        this.props.dispatch({
+            type: 'global/success',
+            payload: {
+                peopleSearch: {
+                    ...this.props.global.peopleSearch,
+                    tag: '',
+                    idCard: '',
+                    name: ''
+                },
+                searchModalVisiable: false
+            }
+        })
+    }
     render() {
         const globalData = this.props.global;
         return (
@@ -94,10 +108,13 @@ class HighSearchModal extends React.Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col span={24} style={{ textAlign: 'center' }}>
+                    <Col span={12} style={{ textAlign: 'center' }}>
                         <Link to='/people/search'>
                             <span className={styles.btnOk}>搜 索</span>
                         </Link>
+                    </Col>
+                    <Col span={12} style={{ textAlign: 'center' }}>
+                        <span className={styles.btnOk} onClick={this.onCancel}>取 消</span>
                     </Col>
                 </Row>
             </div>

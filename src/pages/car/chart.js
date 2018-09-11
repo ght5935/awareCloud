@@ -73,6 +73,46 @@ class Chart extends React.Component {
             </div>
         )
     }
+    tooltipType = (props) => {
+        const { payload } = props
+        return (
+            payload.map((entry, index) => (
+                <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>
+                    <p >{`${entry.payload.carModel}: ${entry.payload.amount}`}</p>
+                </div>
+            ))
+        )
+    }
+    tooltipType1 = (props) => {
+        const { payload } = props
+        return (
+            payload.map((entry, index) => (
+                <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>
+                    <p >{`${entry.payload.plateType}: ${entry.payload.amount}`}</p>
+                </div>
+            ))
+        )
+    }
+    tooltipType2 = (props) => {
+        const { payload } = props
+        return (
+            payload.map((entry, index) => (
+                <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>
+                    <p >{`${entry.payload.carFlag}: ${entry.payload.amount}`}</p>
+                </div>
+            ))
+        )
+    }
+    tooltipType3 = (props) => {
+        const { payload } = props
+        return (
+            payload.map((entry, index) => (
+                <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>
+                    <p >{`${entry.payload.carSystem}: ${entry.payload.amount}`}</p>
+                </div>
+            ))
+        )
+    }
     render() {
         const car = this.props.car;
         const carChart = car.carChart;
@@ -151,7 +191,11 @@ class Chart extends React.Component {
                                                     <BarChart data={chartList && chartList.carModelAmountDataList ? chartList.carModelAmountDataList : []}>
                                                         <CartesianGrid stroke="#3F576F" />
                                                         <XAxis dataKey="carModel" stroke="#DBDBDB" />
-                                                        <Tooltip cursor={{ fill: 'rgba(0,0,0,.2)' }} wrapperStyle={{ background: 'rgba(255,255,255,.3)' }} />
+                                                        <Tooltip
+                                                            cursor={{ fill: 'rgba(0,0,0,.2)' }}
+                                                            wrapperStyle={{ background: 'rgba(255,255,255,.3)' }}
+                                                            content={this.tooltipType}
+                                                        />
                                                         <Bar dataKey="amount" fill="#3D938D" barSize={40}>
                                                             <LabelList dataKey="amount" position="center" fill="#DBDBDB" />
                                                         </Bar>
@@ -173,7 +217,11 @@ class Chart extends React.Component {
                                                     <BarChart data={chartList && chartList.carPlateTypeAmountDataList ? chartList.carPlateTypeAmountDataList : []}>
                                                         <CartesianGrid stroke="#3F576F" />
                                                         <XAxis dataKey="plateType" stroke="#DBDBDB" />
-                                                        <Tooltip cursor={{ fill: 'rgba(0,0,0,.2)' }} wrapperStyle={{ background: 'rgba(255,255,255,.3)' }} />
+                                                        <Tooltip
+                                                            cursor={{ fill: 'rgba(0,0,0,.2)' }}
+                                                            wrapperStyle={{ background: 'rgba(255,255,255,.3)' }}
+                                                            content={this.tooltipType1}
+                                                        />
                                                         <Bar dataKey="amount" fill="#3D938D" barSize={40}>
                                                             <LabelList dataKey="amount" position="center" fill="#DBDBDB" />
                                                         </Bar>
@@ -198,7 +246,11 @@ class Chart extends React.Component {
                                             <BarChart data={chartList && chartList.carFlagAmountDataList ? chartList.carFlagAmountDataList : []}>
                                                 <CartesianGrid stroke="#3F576F" />
                                                 <XAxis dataKey="carFlag" stroke="#DBDBDB" />
-                                                <Tooltip cursor={{ fill: 'rgba(0,0,0,.2)' }} wrapperStyle={{ background: 'rgba(255,255,255,.3)' }} />
+                                                <Tooltip
+                                                    cursor={{ fill: 'rgba(0,0,0,.2)' }}
+                                                    wrapperStyle={{ background: 'rgba(255,255,255,.3)' }}
+                                                    content={this.tooltipType2}
+                                                />
                                                 <Bar dataKey="amount" fill="#3D938D" barSize={40}>
                                                     <LabelList dataKey="amount" position="center" fill="#DBDBDB" />
                                                 </Bar>
@@ -215,7 +267,11 @@ class Chart extends React.Component {
                                         <BarChart data={chartList && chartList.carSystemAmountDataList ? chartList.carSystemAmountDataList : []}>
                                             <CartesianGrid stroke="#3F576F" />
                                             <XAxis dataKey="carSystem" stroke="#DBDBDB" />
-                                            <Tooltip cursor={{ fill: 'rgba(0,0,0,.2)' }} wrapperStyle={{ background: 'rgba(255,255,255,.3)' }} />
+                                            <Tooltip
+                                                cursor={{ fill: 'rgba(0,0,0,.2)' }}
+                                                wrapperStyle={{ background: 'rgba(255,255,255,.3)' }}
+                                                content={this.tooltipType3}
+                                            />
                                             <Bar dataKey="amount" fill="#3D938D" barSize={40}>
                                                 <LabelList dataKey="amount" position="center" fill="#DBDBDB" />
                                             </Bar>

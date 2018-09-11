@@ -58,6 +58,22 @@ class HighSearchModal extends React.Component {
         //     type: 'house/getHouse'
         // })
     }
+    onCancel = () => {
+        this.props.dispatch({
+            type: 'global/success',
+            payload: {
+                houseHome: {
+                    ...this.props.global.houseHome,
+                    houseHomeParams: {
+                        ...this.props.global.houseHome.houseHomeParams,
+                        villageName: '',
+                        attribute_id: ''
+                    }
+                },
+                searchModalVisiable: false
+            }
+        })
+    }
     render() {
         const houseHome = this.props.global.houseHome;
         return (
@@ -89,10 +105,13 @@ class HighSearchModal extends React.Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col span={24} style={{ textAlign: 'center' }}>
+                    <Col span={12} style={{ textAlign: 'center' }}>
                         <Link to='/house/total'>
                             <span className={styles.btnOk} onClick={this.onSearch}>搜 索</span>
                         </Link>
+                    </Col>
+                    <Col span={12} style={{ textAlign: 'center' }}>
+                        <span className={styles.btnOk} onClick={this.onCancel}>取 消</span>
                     </Col>
                 </Row>
             </div>

@@ -98,7 +98,27 @@ class People extends React.Component {
                 </text>
             </g>
         );
-    };
+    }
+    tooltipType = (props) => {
+        const { payload } = props
+        return (
+            payload.map((entry, index) => (
+                <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>
+                    <p >{`${entry.payload.name}: ${entry.payload.count}`}</p>
+                </div>
+            ))
+        )
+    }
+    tooltipType1 = (props) => {
+        const { payload } = props
+        return (
+            payload.map((entry, index) => (
+                <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>
+                    <p >{`${entry.payload.time}: ${entry.payload.count}`}</p>
+                </div>
+            ))
+        )
+    }
     searchModalClick = () => {
         window.g_app._store.dispatch({
             type: 'global/success',
@@ -171,7 +191,11 @@ class People extends React.Component {
                                         </defs>
                                         {/* <CartesianGrid stroke="#3F576F" /> */}
                                         <XAxis tick={<BarTick />} dataKey="name" stroke="#ccc" />
-                                        <Tooltip cursor={{ fill: 'rgba(0,0,0,.2)' }} wrapperStyle={{ background: 'rgba(255,255,255,.3)' }} />
+                                        <Tooltip
+                                            cursor={{ fill: 'rgba(0,0,0,.2)' }}
+                                            wrapperStyle={{ background: 'rgba(255,255,255,.3)' }}
+                                            content={this.tooltipType}
+                                        />
                                         <Bar dataKey="count" barSize={20} fill="url(#colorPv)">
                                             <LabelList dataKey="count" content={this.renderCustomizedLabel} />
                                         </Bar>
@@ -186,7 +210,11 @@ class People extends React.Component {
                                         <XAxis dataKey="time" stroke="#3F576F" tickFormatter={this.formatTodayFace} />
                                         <YAxis />
                                         <CartesianGrid stroke="#3F576F" />
-                                        <Tooltip />
+                                        <Tooltip
+                                            cursor={{ fill: 'rgba(0,0,0,.2)' }}
+                                            wrapperStyle={{ background: 'rgba(255,255,255,.3)' }}
+                                            content={this.tooltipType1}
+                                        />
                                         <Line type="monotone" dataKey="count" stroke="#8884d8" activeDot={{ r: 8 }} />
                                         {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
                                     </LineChart>

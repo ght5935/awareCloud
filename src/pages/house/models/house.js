@@ -312,6 +312,7 @@ export default {
                         houseHome: {
                             ...houseHome,
                             villageOrgunitIdList: result
+                            // HouseList: result
                         }
                     }
                 })

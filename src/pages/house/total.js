@@ -30,7 +30,8 @@ const Option = Select.Option;
 class Total extends React.Component {
   state = {
     resultVisible: false,
-    resultLabel: ''
+    resultLabel: '',
+    renderResult: false
   }
   componentDidMount() {
     const houseHome = this.props.house.houseHome;
@@ -117,15 +118,13 @@ class Total extends React.Component {
   }
   onCancel = () => {
     this.setState({
-      resultVisible: false
+      resultVisible: false,
+      renderResult:false
     })
   }
   onSelectModal = (id) => {
     const house = this.props.house;
     const { houseHome } = house;
-    this.setState({
-      resultLabel: '房屋数'
-    })
     this.props.dispatch({
       type: 'house/success',
       payload: {
@@ -138,7 +137,10 @@ class Total extends React.Component {
     this.props.dispatch({
       type: 'house/getHouseInfoByOrgunitId'
     })
-    this.renderResultContainer(this.state.resultLabel, houseHome.villageOrgunitIdList)
+    this.setState({
+      resultLabel: '房屋数',
+      renderResult: true
+    })
   }
   renderResultContainer = (resultLabel, data) => {
     let Ele;
@@ -213,7 +215,7 @@ class Total extends React.Component {
                 <InfoCard
                   titleLabel={'县/镇'}
                   titleCon={`${houseHomeParams.burg !== '' ? houseHomeParams.burg.split('|')[1] : ''}`}
-                  titleCon={Utils.getDataFromArr([{ id: 1, name: '浦东镇' }], houseHomeParams.burg, 'name')}
+                  titleCon={Utils.getDataFromArr([{ id: 1, name: '高境镇' }], houseHomeParams.burg, 'name')}
                 />
               </Col>
             </Row>
@@ -300,7 +302,10 @@ class Total extends React.Component {
           onCancel={this.onCancel}
         >
           <div className={`${styles.resultContainer} ${style.scrollbar}`}>
-            {this.renderResultContainer(this.state.resultLabel, houseHome.HouseList)}
+            {
+              this.state.renderResult ? this.renderResultContainer(this.state.resultLabel, houseHome.villageOrgunitIdList) :
+                this.renderResultContainer(this.state.resultLabel, houseHome.HouseList)
+            }
           </div>
         </ModalCard>
       </div>
