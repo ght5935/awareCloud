@@ -59,7 +59,12 @@ export default {
         personId: '',
         UtilitiesDateList: [],
         utilitiesParams: '',
-        utilityData: {}
+        utilityData: {},
+        chartTotal: {
+            genderTotal: '',
+            censusTotal: '',
+            ageTotal: ''
+        }
     },
     effects: {
         * getTodayFace({ payload }, { put, call, select }) {
@@ -197,13 +202,35 @@ export default {
             } else {
                 params = yield select(store => store.people.getChartsParam.orgunitId);
             }
+            const chartTotal = yield select(store => store.people.chartTotal);
             const response = yield call(getPersonChartByOrgId, params);
+            let genderNum = 0
+            let censusNum = 0
+            let ageNum = 0
             if (isApiSuccess(response)) {
                 const result = apiData(response);
+                let genderArr = result.genderData ? result.genderData : []
+                let censusArr = result.censusData ? result.censusData : []
+                let ageArr = result.ageData ? result.ageData : []
+                genderArr.map((v) => {
+                    genderNum += v.count
+                })
+                censusArr.map((v) => {
+                    censusNum += v.count
+                })
+                ageArr.map((v) => {
+                    ageNum += v.count
+                })
                 yield put({
                     type: 'success',
                     payload: {
-                        personChart: result
+                        personChart: result,
+                        chartTotal: {
+                            ...chartTotal,
+                            genderTotal: genderNum !== 0 ? genderNum : 1,
+                            censusTotal: censusNum !== 0 ? censusNum : 1,
+                            ageTotal: ageNum !== 0 ? ageNum : 1
+                        }
                     }
                 })
             }
@@ -311,7 +338,7 @@ export default {
                 });
                 yield put({
                     type: 'getUtilities'
-                   
+
                 })
             }
         },

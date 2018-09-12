@@ -28,27 +28,31 @@ class InfoCar extends React.Component {
         })
     }
     onTabClick = (v) => {
+        const data = this.props.people.carInfo && this.props.people.carInfo.length > 0 ? this.props.people.carInfo : []
+        if (data && data.length == 1) {
+            v = 0
+        }
         this.setState({
             infoCarIndex: v
         })
     }
     render() {
-        const data = this.props.people.carInfo && this.props.people.carInfo.length > 0 ? this.props.people.carInfo : ''
+        const data = this.props.people.carInfo && this.props.people.carInfo.length > 0 ? this.props.people.carInfo : []
         return (
             <Card
-                titleLeft={data ? data[0].carDetailData.plateNumber : '无'}
-                titleRight={data ? data[1].carDetailData.plateNumber : '无'}
+                titleLeft={data && data.length > 0 && data[0].carDetailData ? `${data[0].carDetailData.abbreviation}${data[0].carDetailData.plateNumber}` : '无'}
+                titleRight={data && data.length > 1 && data[1].carDetailData ? `${data[1].carDetailData.abbreviation}${data[1].carDetailData.plateNumber}` : ''}
                 onTabClick={this.onTabClick}
                 tabIndex={this.state.infoCarIndex}
-                >
+            >
                 <Row gutter={10} className={styles.middleRow}>
                     <Col span={24}>
                         <div className={styles.infoLeftBg} >
-                            <img src={data ? data[this.state.infoCarIndex].carDetailData.img[0] : ''} alt="" />
+                            <img src={data && data.length > 0 ? data[this.state.infoCarIndex].carDetailData.img[0] : ''} alt="" />
                         </div>
                     </Col>
                 </Row>
-                {data ? data[this.state.infoCarIndex].perceviceDetailDatas && data[this.state.infoCarIndex].perceviceDetailDatas.length > 0 ?
+                {data && data.length > 0 ? data[this.state.infoCarIndex].perceviceDetailDatas && data[this.state.infoCarIndex].perceviceDetailDatas.length > 0 ?
                     <Row gutter={10} className={styles.middleRow}>
                         <Col span={24}>
                             <div className={styles.infoLeftCon}>

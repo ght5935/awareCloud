@@ -54,7 +54,8 @@ export default {
         },
         houseChart: {
             VillageChartList: [],
-            villageId: '33'
+            villageId: '33',
+            houseTypeTotal: ''
         },
         houseInfo: {
             personDetail: false,
@@ -334,17 +335,24 @@ export default {
         * getVillageChart({ payload }, { put, call, select }) {
             const houseChart = yield select(store => store.house.houseChart);
             const response = yield call(getVillageChart, { orgunitId: houseChart.villageId });
+            let totalNum = 0
             if (isApiSuccess(response)) {
                 const result = apiData(response);
+                let arrData = result.houseAttributeCountDataList ? result.houseAttributeCountDataList : []
+                arrData.map((v)=>{
+                    totalNum += v.count
+                })
                 yield put({
                     type: 'success',
                     payload: {
                         houseChart: {
                             ...houseChart,
-                            VillageChartList: result
+                            VillageChartList: result,
+                            houseTypeTotal: totalNum
                         }
                     }
-                });
+                })
+                console.log(totalNum)
             }
         },
         * getHouseInfo({ payload }, { put, call, select }) {

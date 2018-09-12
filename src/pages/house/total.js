@@ -119,7 +119,7 @@ class Total extends React.Component {
   onCancel = () => {
     this.setState({
       resultVisible: false,
-      renderResult:false
+      renderResult: false
     })
   }
   onSelectModal = (id) => {
@@ -191,8 +191,8 @@ class Total extends React.Component {
             <img src={searchIcon} className={styles.titleIcon} data-id="icon_btn" onClick={this.searchModalClick} />
           </Slogen>
           <div className={styles.linkBtn}>
-            <Link to='/house/chart'>
-              <div className={styles.btn}>图表信息</div>
+            <Link to='/house'>
+              <div className={styles.btn}>统计信息</div>
             </Link>
           </div>
         </div>

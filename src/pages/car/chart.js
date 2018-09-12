@@ -74,7 +74,7 @@ class Chart extends React.Component {
         )
     }
     tooltipType = (props) => {
-        const { payload } = props
+        const payload = props.payload ? props.payload : []
         return (
             payload.map((entry, index) => (
                 <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>
@@ -84,7 +84,7 @@ class Chart extends React.Component {
         )
     }
     tooltipType1 = (props) => {
-        const { payload } = props
+        const payload = props.payload ? props.payload : []
         return (
             payload.map((entry, index) => (
                 <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>
@@ -94,7 +94,7 @@ class Chart extends React.Component {
         )
     }
     tooltipType2 = (props) => {
-        const { payload } = props
+        const payload = props.payload ? props.payload : []
         return (
             payload.map((entry, index) => (
                 <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>
@@ -104,7 +104,7 @@ class Chart extends React.Component {
         )
     }
     tooltipType3 = (props) => {
-        const { payload } = props
+        const payload = props.payload ? props.payload : []
         return (
             payload.map((entry, index) => (
                 <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>

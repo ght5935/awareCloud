@@ -69,6 +69,7 @@ export default {
         * serverOpen({ payload }, sagas) {
             const config = { url: WEBSOCKET_URL, namespace: 'apimsg' };
             watchList(config, data => {
+                console.log('.....')
                 payload.dispatch({ type: 'socketMsg', payload: { data } });
             });
 
@@ -76,6 +77,7 @@ export default {
         * socketMsg({ payload }, { put }) {
             const stat = payload.data.stat;
             let information = ''
+            console.log( payload.data)
             if (payload.information)
                 information = payload.information;
 
@@ -86,6 +88,7 @@ export default {
                     information
                 }
             })
+            console.log('C%io','color:blue',stat)
         },
         * five_real({ payload }, { put, call, select }) {
             const response = yield call(five_real, {});

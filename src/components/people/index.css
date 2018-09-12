@@ -73,7 +73,7 @@
     background: rgba(34, 40, 52, .7);
     position: absolute;
     left: 50%;
-    top: calc(30% - 10px);
+    top: 21%;
     transform: translateX(-50%);
     border: 13px solid transparent;
     border-image: url(../../assets/common/aim.png) 13 13 round;

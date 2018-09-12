@@ -134,13 +134,11 @@ class Search extends React.Component {
             <div className={styles.resultCon1} >
               <img src={item.carImg} alt="" className={styles.resultCon1Img} />
               <InfoiconCard
-                className={styles.resultInfoiconCard}
                 titLabel={'姓名'}
                 titCon={item.name}
                 iSarrow={false}
               />
               <InfoiconCard
-                className={styles.resultInfoiconCard}
                 titLabel={'车牌号'}
                 titCon={item.plateNumber}
                 iSarrow={false}
@@ -178,7 +176,7 @@ class Search extends React.Component {
             <img src={searchIcon} className={styles.titleIcon} data-id="icon_btn" onClick={this.searchModalClick} />
           </Slogen>
           <div className={styles.linkBtn}>
-            <Link to='/car/chart'>
+            <Link to='/car'>
               <div className={styles.btn}>统计信息</div>
             </Link>
           </div>

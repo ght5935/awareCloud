@@ -47,15 +47,13 @@ class Chart extends React.Component {
         })
     }
     renderTypeLabel = data => {
+        const totalNum = this.props.house.houseChart.houseTypeTotal !== 0 ? this.props.house.houseChart.houseTypeTotal : 1
         let typeData = data ? data : []
-        let total = ''
         return typeData.map((item, idx) => {
-            total += Number(item.count)
-            console.log(total, '========')
             return <ChartLabel
                 key={idx}
                 titLabel={item.houseAttribute}
-                titCon={`${(item.count / total).toFixed(2)}%`}
+                titCon={`${(item.count / totalNum).toFixed(4)*100}%`}
             >
                 <span className={styles.LabelBg} style={{ background: `${item.htmlColor}` }}></span>
             </ChartLabel>
@@ -63,17 +61,18 @@ class Chart extends React.Component {
         )
     }
     tooltipType = (props) => {
-        const { payload } = props
+        const payload = props.payload ? props.payload : []
         return (
             payload.map((entry, index) => (
                 <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>
-                    <p >{`${entry.payload.houseAttribute}: ${entry.payload.count}`}</p>
+                    {/* <p >{`${entry.payload.houseAttribute}: ${entry.payload.count}`}</p> */}
+                    <p >{`${entry.payload.houseAttribute}`}</p>
                 </div>
             ))
         )
     }
     tooltipType1 = (props) => {
-        const { payload } = props
+        const payload = props.payload ? props.payload : []
         return (
             payload.map((entry, index) => (
                 <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>
@@ -83,7 +82,7 @@ class Chart extends React.Component {
         )
     }
     tooltipType2 = (props) => {
-        const { payload } = props
+        const payload = props.payload ? props.payload : []
         return (
             payload.map((entry, index) => (
                 <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>

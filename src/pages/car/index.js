@@ -104,6 +104,26 @@ class Index extends React.Component {
         let rt = v.split(' ')[1].split(':')
         return rt[0] + ':' + rt[1]
     }
+    tooltipType = (props) => {
+        const payload = props.payload ? props.payload : []
+        return (
+            payload.map((entry, index) => (
+                <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>
+                    <p >{`${entry.payload.name}: ${entry.payload.count}`}</p>
+                </div>
+            ))
+        )
+    }
+    tooltipType1 = (props) => {
+        const payload = props.payload ? props.payload : []
+        return (
+            payload.map((entry, index) => (
+                <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>
+                    <p >{`${entry.payload.time}: ${entry.payload.count}`}</p>
+                </div>
+            ))
+        )
+    }
     render() {
         const car = this.props.car;
         const carTotal = car.carTotal;
@@ -157,13 +177,16 @@ class Index extends React.Component {
                     </Card>
                 </div>
                 <div className={styles.totalRight}>
-                    <Card titleLeft={'车辆感知数据总量'} >
+                    <Card
+                        titleLeft={'车辆感知数据总量'}
+                        titleRight={this.props.mapOrgPerceiveAndFace && this.props.mapOrgPerceiveAndFace.totalAmount ? this.props.mapOrgPerceiveAndFace.totalAmount : '0'}
+                    >
                         <div style={{ width: '98%', margin: '1% auto', background: 'rgba(32, 52, 68, .7)' }}>
                             <div>
                                 <UnreglarTitle title={'今日感知增量'} />
                             </div>
                             <ResponsiveContainer width="100%" height={200} >
-                                <BarChart data={this.props.car.mapOrgPerceiveAndFace.perceiveData} margin={{ top: 30, right: 10, left: 10, bottom: 5 }}>
+                                <BarChart data={this.props.car.mapOrgPerceiveAndFace.perList} margin={{ top: 30, right: 10, left: 10, bottom: 5 }}>
                                     <defs>
                                         <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
                                             <stop offset="5%" stopColor="#063EAF" stopOpacity={0.35} />
@@ -172,7 +195,11 @@ class Index extends React.Component {
                                     </defs>
                                     {/* <CartesianGrid stroke="#3F576F" /> */}
                                     <XAxis tick={<BarTick />} dataKey="name" stroke="#ccc" />
-                                    <Tooltip cursor={{ fill: 'rgba(0,0,0,.2)' }} wrapperStyle={{ background: 'rgba(255,255,255,.3)' }} />
+                                    <Tooltip
+                                        cursor={{ fill: 'rgba(0,0,0,.2)' }}
+                                        wrapperStyle={{ background: 'rgba(255,255,255,.3)' }}
+                                        content={this.tooltipType}
+                                    />
                                     <Bar dataKey="count" barSize={20} fill="url(#colorPv)">
                                         <LabelList dataKey="count" content={this.renderCustomizedLabel} />
                                     </Bar>
@@ -187,7 +214,11 @@ class Index extends React.Component {
                                     <XAxis dataKey="time" stroke="#3F576F" tickFormatter={this.formatTodayFace} />
                                     <YAxis />
                                     <CartesianGrid stroke="#3F576F" />
-                                    <Tooltip />
+                                    <Tooltip
+                                        cursor={{ fill: 'rgba(0,0,0,.2)' }}
+                                        wrapperStyle={{ background: 'rgba(255,255,255,.3)' }}
+                                        content={this.tooltipType1}
+                                    />
                                     <Line type="monotone" dataKey="count" stroke="#8884d8" activeDot={{ r: 8 }} />
                                     {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
                                 </LineChart>

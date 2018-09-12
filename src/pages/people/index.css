@@ -36,7 +36,7 @@
 .peopleCenter{
     position: absolute;
     width: 100%;
-    top: 16%;
+    top: 18%;
 }
 
 .PieCard {
@@ -142,6 +142,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    min-height: 69px;
 }
 .totalNumber {
     width: 32%;
@@ -163,25 +164,34 @@
     width: 100%;
     height: 618px;
     overflow-y: auto;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: space-around;
-}
-.flexItem{
-    width: 33%;
-    box-sizing: border-box;
-    padding: 10px;
 }
 .resultCon {
-    width: 100%;
+    width: 240px;
+    float: left;
+    margin: 7px;
 }
 .resultCon1{
-    width: 100%;
-
+    width: 31%;
+    float: left;
+    margin-left: 15px;
     background: rgba(32, 52, 68, .7);
+    box-sizing: border-box;
+    margin-top: 10px;
 }
-.resultInfoiconCard{
-    height: 80px;
+.resultCon2{
+    width: 245px;
+    float: left;
+    margin-left: 15px;
+    background: rgba(32, 52, 68, .7);
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+.resultCon2Img{
+    width: 150px;
+    height: 120px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
 }
 .resultCon1Img {
     width: 100%;
@@ -203,17 +213,6 @@
     to{
         opacity: 1;
     }
-}
-.searchModal {
-    width: 35%;
-    /* height: 280px; */
-    background: rgba(34, 40, 52, .7);
-    position: absolute;
-    left: 50%;
-    top: 25%;
-    transform: translateX(-50%);
-    box-sizing: border-box;
-    padding: 18px;
 }
 .condition{
     /* display: flex; */
@@ -263,6 +262,7 @@
     position: absolute;
     left: 1%;
     width: 26%;
+    top:16%;
 }
 /* chrt */
 .topTotal {
@@ -270,7 +270,7 @@
     height: 78px;
     position: absolute;
     right: 0;
-    top: 40%;
+    top: 50%;
 }
 .topNumber{
     font-size: 30px;
@@ -286,13 +286,13 @@
 }
 .chartTop {
     width: 100%;
-    height:20%;
+    height:15%;
     margin: 0 auto;
     position: relative;
 }
 .chartCenter {
     width: 100%;
-    height: 40%;
+    height: 45%;
     margin: 0 auto;
 }
 .chartBottom {

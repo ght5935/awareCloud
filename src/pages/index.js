@@ -88,6 +88,13 @@ class IndexPage extends React.Component {
         })
     }
     componentDidMount() {
+        console.log(this.props, '=================')
+        this.props.dispatch({
+            type:'login/success',
+            payload:{
+                loading:false
+            }
+        })
         window.g_app._store.dispatch({
             type: 'global/five_real'
         })
@@ -129,7 +136,12 @@ class IndexPage extends React.Component {
                 searchModalVisiable: true
             }
         });
-
+        this.props.dispatch({
+            type:'login/success',
+            payload:{
+                loading:false
+            }
+        })
     }
     renderFacilities = data => {
         let facilities = data ? data : []
@@ -187,7 +199,7 @@ class IndexPage extends React.Component {
         return rt[0] + ':' + rt[1]
     }
     tooltipType = (props) => {
-        const { payload } = props
+        const payload = props.payload ? props.payload : []
         return (
             payload.map((entry, index) => (
                 <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>
@@ -197,7 +209,7 @@ class IndexPage extends React.Component {
         )
     }
     tooltipType1 = (props) => {
-        const { payload } = props
+        const payload = props.payload ? props.payload : []
         return (
             payload.map((entry, index) => (
                 <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>
@@ -495,6 +507,7 @@ export default connect(state => {
         stat: state.global.stat,
         todayFace: state.global.todayFace,
         orgWeek: state.global.orgWeek,
-        searchModalVisiable: state.global.searchModalVisiable
+        searchModalVisiable: state.global.searchModalVisiable,
+        login: state.login
     };
 })(IndexPage);

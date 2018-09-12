@@ -13,11 +13,14 @@ import ModalCard from '../../components/common/ModalCard';
 import ResultCard from '../../components/common/ResultCard';
 
 import SearchHighModal from '../../components/people/searchHighModal';
-
+import style from '../../style/common/common.css';
 import styles from './index.css';
 
 import searchIcon from '../../assets/common/search-icon.png'
+import smPersonIcon from '../../assets/home/indeed-entry-icon.png';
 import smHouseIcon from '../../assets/home/indeed-house-icon.png';
+import smCarIcon from '../../assets/home/indeed-car-icon.png';
+
 import * as Conf from '../../utils/config';
 import * as Utils from '../../utils/utils';
 
@@ -51,7 +54,14 @@ class SearchResult extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      resultLabel: ''
+      resultLabel: '',
+      resultVisible: false,
+      renderResult: false,
+      renderResultData: {
+        personTotalData: {
+          personDetailData: ''
+        }
+      }
     }
   }
 
@@ -132,19 +142,39 @@ class SearchResult extends React.Component {
       resultLabel: name
     })
   }
+  onSelectModal = (id) => {
+    const data = this.props.people.searchResult
+    let personOrgData = data.personOrgData && data.personOrgData.orgData ? data.personOrgData.orgData : []
+    personOrgData.map(v => {
+      if (v.id == id) {
+        this.setState({
+          renderResultData: {
+            personTotalData: {
+              personDetailData: v.personDetailData
+            }
+          }
+
+        })
+      }
+    })
+    this.setState({
+      resultLabel: '人员总数',
+      renderResult: true
+    })
+  }
   renderResultContainer = (resultLabel, data) => {
     let Ele = '';
-    let personTotalData = data.personTotalData && data.personTotalData.personDetailData ? data.personTotalData.personDetailData : [];
-    let personOrgData = data.personTotalData && data.personTotalData.orgData ? data.personTotalData.orgData : [];
+    let personTotalData = data.personTotalData && data.personTotalData.personDetailData ? data.personTotalData.personDetailData : []
+    let personOrgData = data.personOrgData && data.personOrgData.orgData ? data.personOrgData.orgData : []
+    let personCarData = data.personCarData && data.personCarData.personCarData ? data.personCarData.personCarData : [];
     switch (resultLabel) {
       case '人员总数':
         Ele = personTotalData.map((item, idx) =>
-          <Link to={`/people/info?personId=${item.id}`} className={styles.flexItem} key={idx}>
+          <Link to={`/people/info?personId=${item.id}`} key={idx}>
             <div className={styles.resultCon1} >
               <div ref={`assetsImgContain${idx}`} className={styles.resultCon1Img} >
                 <img onLoad={Utils.handleImg(this.refs[`assetsImg${idx}`], this.refs[`assetsImgContain${idx}`])} ref={`assetsImg${idx}`} src={item.img && item.img.length > 0 ? item.img[0] : ''} alt="" />
               </div>
-
               <InfoiconCard
                 className={styles.resultInfoiconCard}
                 titLabel={'姓名'}
@@ -154,7 +184,7 @@ class SearchResult extends React.Component {
               <InfoiconCard
                 className={styles.resultInfoiconCard}
                 titLabel={'身份证号'}
-                titCon={item.idCard}
+                titCon={item.identityCard}
                 iSarrow={false}
               />
             </div>
@@ -163,21 +193,34 @@ class SearchResult extends React.Component {
         break;
       case '人员所属社区数':
         Ele = personOrgData.map((item, idx) =>
-          <div className={styles.resultCon} key={idx}>
+          <div className={styles.resultCon} key={idx} onClick={this.onSelectModal.bind(this, item.id)}>
             <ResultCard
               titleLabel={item.name}
-              titleCon={item.houseAmount}
+              titleCon={item.sortNum}
             />
           </div>)
         break;
       case '人员拥有车辆数':
-        Ele = personOrgData.map((item, idx) =>
-          <div className={styles.resultCon} key={idx}>
-            <ResultCard
-              titleLabel={item.villageName}
-              titleCon={item.houseAmount}
-            />
-          </div>)
+        Ele = personCarData.map((item, idx) =>
+          <Link to={`/car/info?carId=${item.carData.id}`} key={idx}>
+            <div className={styles.resultCon2}>
+              <img src={item.carData && item.carData && item.carData.img && item.carData.img.length > 0 ? item.carData.img[0] : ''}
+                alt=""
+                className={styles.resultCon2Img}
+              />
+              <InfoiconCard
+                titLabel={'姓名'}
+                titCon={item.personData && item.personData.name ? item.personData.name : ''}
+                iSarrow={false}
+              />
+              <InfoiconCard
+                titLabel={'身份证号'}
+                titCon={item.personData && item.personData.identityCard ? item.personData.identityCard : ''}
+                iSarrow={false}
+              />
+            </div>
+          </Link>
+        )
         break;
       default:
         Ele = '';
@@ -186,14 +229,14 @@ class SearchResult extends React.Component {
   }
   onCancel = () => {
     this.setState({
-      resultVisible: false
+      resultVisible: false,
+      renderResult: false
     });
   }
   render() {
 
     return (
       <div className={styles.people}>
-
         <div className={styles.peopleTop}>
           <Slogen type={2}>
             <Row>
@@ -210,6 +253,11 @@ class SearchResult extends React.Component {
               alt=""
             />
           </Slogen>
+          <div className={styles.linkBtn}>
+            <Link to='/people'>
+              <div className={styles.btn}>统计信息</div>
+            </Link>
+          </div>
         </div>
         <div className={styles.indexLeft}>
           <Card titleLeft={'搜索条件'}>
@@ -294,7 +342,7 @@ class SearchResult extends React.Component {
               <Col span={12}>
                 <div className={styles.middleCard} onClick={this.resultClick.bind(this, '人员总数')}>
                   <InfoiconCard
-                    icons={smHouseIcon}
+                    icons={smPersonIcon}
                     titLabel={'人员总数'}
                     titCon={this.props.people.searchResult && this.props.people.searchResult.personTotalData ? this.props.people.searchResult.personTotalData.total : 0}
                     iSarrow={true}
@@ -311,20 +359,18 @@ class SearchResult extends React.Component {
                   />
                 </div>
               </Col>
-
             </Row>
             <Row className={styles.middleRow} gutter={20}>
               <Col span={12}>
                 <div className={styles.middleCard} onClick={this.resultClick.bind(this, '人员拥有车辆数')}>
                   <InfoiconCard
-                    icons={smHouseIcon}
+                    icons={smCarIcon}
                     titLabel={'人员拥有车辆数'}
                     titCon={this.props.people.searchResult && this.props.people.searchResult.personCarData ? this.props.people.searchResult.personCarData.total : 0}
                     iSarrow={true}
                   />
                 </div>
               </Col>
-
             </Row>
           </Card>
         </div>
@@ -336,8 +382,11 @@ class SearchResult extends React.Component {
           maskClosable={true}
           onCancel={this.onCancel}
         >
-          <div className={styles.resultContainer} ref="modalContent">
-            {this.state.resultVisible ? this.renderResultContainer(this.state.resultLabel, this.props.people.searchResult) : ''}
+          <div className={`${styles.resultContainer} ${style.scrollbar}`} ref="modalContent">
+            {
+              this.state.renderResult ? this.renderResultContainer(this.state.resultLabel, this.state.renderResultData) :
+                this.renderResultContainer(this.state.resultLabel, this.props.people.searchResult)
+            }
           </div>
         </ModalCard>
       </div>

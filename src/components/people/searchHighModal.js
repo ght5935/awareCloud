@@ -305,6 +305,7 @@ class HighSearchModal extends React.Component {
                     <Col span={10} className={styles.condition}>
                         <div className={styles.label}>婚姻状况：</div>
                         <Select style={{ width: '53%' }} value={this.props.totalSearchParams.marital_status} onChange={this.onMaritalStatusChange}>
+                            <Option value=''>全部</Option>
                             {Config.MARITAL_STATUS.map((v, i) => <Option value={i} key={i}>{v}</Option>)}
                         </Select>
                     </Col>
@@ -321,7 +322,7 @@ class HighSearchModal extends React.Component {
                         <div className={styles.label}>所属社区：</div>
                         <Select style={{ width: '53%' }} value={this.props.totalSearchParams.orgunitId} onChange={this.onOrgunitIdChange}>
                             <Option value=''>全部</Option>
-                            {this.props.allVillage.map(v => <Option value={v.id}>{v.name}</Option>)}
+                            {this.props.allVillage.map(v => <Option value={v.id} key={v.id}>{v.name}</Option>)}
                         </Select>
                     </Col>
                     <Col span={14} className={styles.condition}>
@@ -342,6 +343,7 @@ class HighSearchModal extends React.Component {
                             value={`${this.props.totalSearchParams.tag}`}
                             name="tag"
                             style={{ width: '88%', textAlign: 'left' }}>
+                            <Radio.Button value='' className={styles.radios} >不 限</Radio.Button>
                             {
                                 this.props.allTag.map(v => <Radio.Button className={styles.radios} value={`${v.id}`} key={v.id}>{v.name}</Radio.Button>)
                             }

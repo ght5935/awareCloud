@@ -25,6 +25,15 @@ class Login extends React.Component {
     this.inputRef.input.focus();
     console.log(this.props, '登录')
   }
+  componentWillUnmount() {
+    this.props.dispatch({
+      type: 'login/success',
+      payload: {
+        loading: false
+      }
+    })
+    console.log('%clogin卸载','color:red')
+  }
   inputRef = undefined;
   componentDidUpdate() {
     setTimeout(() => this.loginSuccess(), 2000);
@@ -66,14 +75,13 @@ class Login extends React.Component {
 
   loginSuccess() {
     if (this.props.isLogin && !this.props.hasError) {
-     this.props.dispatch({
-       type: 'login/success',
-       payload: {
-         loading: false
-       }
-     })
+      this.props.dispatch({
+        type: 'login/success',
+        payload: {
+          loading: false
+        }
+      })
       router.push('/')
-
     } else if (this.props.hasError) {
       message.destroy();
       message.warning(this.props.errorMsg);
@@ -81,6 +89,7 @@ class Login extends React.Component {
         type: 'login/clearMsg'
       });
     }
+    console.log('%clogin成功','color:red')
   }
   clearPassword = () => {
     this.setState({

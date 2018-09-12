@@ -33,6 +33,26 @@ class Chart extends React.Component {
             }
         });
     }
+    tooltipType = (props) => {
+        const payload = props.payload ? props.payload : []
+        return (
+            payload.map((entry, index) => (
+                <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>
+                    <p >{`${entry.payload.name}`}</p>
+                </div>
+            ))
+        )
+    }
+    tooltipType1 = (props) => {
+        const payload = props.payload ? props.payload : []
+        return (
+            payload.map((entry, index) => (
+                <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>
+                    <p >{`${entry.payload.name}: ${entry.payload.count}`}</p>
+                </div>
+            ))
+        )
+    }
     render() {
         const COLORS = ['#4B45D1', '#EA218C'];
         const COLORS01 = ['#54ACCB', '#9FD292', '#352559'];
@@ -41,11 +61,11 @@ class Chart extends React.Component {
             { name: '男', value: 53 },
             { name: '女', value: 46 }
         ];
-        const data01 = [
-            { name: '户籍人员', value: 70 },
-            { name: '来沪人员', value: 26 },
-            { name: '境外人员', value: 3 }
-        ];
+        // const data01 = [
+        //     { name: '户籍人员', value: 70 },
+        //     { name: '来沪人员', value: 26 },
+        //     { name: '境外人员', value: 3 }
+        // ];
         const data02 = [
             { name: '1-17', value: 13 },
             { name: '18-29', value: 51 },
@@ -65,7 +85,7 @@ class Chart extends React.Component {
                             </Col>
                         </Row>
                     </Slogen>
-                    <div className={styles.linkBtn} style={{ marginTop: 10 }}>
+                    <div className={styles.linkBtn} style={{ marginTop: 32 }}>
                         <Link to='/people'>
                             <div className={styles.btn}>地图信息</div>
                         </Link>
@@ -107,7 +127,7 @@ class Chart extends React.Component {
                                                     fill="#DBDBDB"
                                                 />
                                             </Pie>
-                                            <Tooltip cursor={{ fill: 'rgba(0,0,0,.2)' }} wrapperStyle={{ background: 'rgba(255,255,255,.3)' }} />
+                                            <Tooltip cursor={{ fill: 'rgba(0,0,0,.2)' }} wrapperStyle={{ background: 'rgba(255,255,255,.3)' }} content={this.tooltipType}/>
                                         </PieChart>
                                     </ResponsiveContainer>
                                 </div>
@@ -118,7 +138,7 @@ class Chart extends React.Component {
                                             titLabel={this.props.people.personChart && this.props.people.personChart.genderData ?
                                                 this.props.people.personChart.genderData[idx].name : []}
                                             titCon={this.props.people.personChart && this.props.people.personChart.genderData ?
-                                                `${(this.props.people.personChart.genderData[idx].count / 100).toFixed(2)}%` : 0}
+                                                `${(this.props.people.personChart.genderData[idx].count / this.props.people.chartTotal.genderTotal).toFixed(4) * 100}%` : 0}
                                             key={idx}>
                                             <span className={styles.LabelBg} style={{ background: `${colors}` }}></span>
                                         </ChartLabel>)
@@ -137,7 +157,7 @@ class Chart extends React.Component {
                                                 dataKey="count"
                                             >
                                                 {
-                                                    data01.map((entry, index) => <Cell stroke={COLORS01[index % COLORS01.length]} fill={COLORS01[index % COLORS01.length]} key={index} />)
+                                                    this.props.people.personChart && this.props.people.personChart.censusData && this.props.people.personChart.censusData.map((entry, index) => <Cell stroke={COLORS01[index % COLORS01.length]} fill={COLORS01[index % COLORS01.length]} key={index} />)
                                                 }
                                                 <Label
                                                     position="center"
@@ -145,7 +165,7 @@ class Chart extends React.Component {
                                                     fill="#DBDBDB"
                                                 />
                                             </Pie>
-                                            <Tooltip cursor={{ fill: 'rgba(0,0,0,.2)' }} wrapperStyle={{ background: 'rgba(255,255,255,.3)' }} />
+                                            <Tooltip cursor={{ fill: 'rgba(0,0,0,.2)' }} wrapperStyle={{ background: 'rgba(255,255,255,.3)' }} content={this.tooltipType}/>
                                         </PieChart>
                                     </ResponsiveContainer>
                                 </div>
@@ -156,7 +176,7 @@ class Chart extends React.Component {
                                             titLabel={this.props.people.personChart && this.props.people.personChart.censusData ?
                                                 this.props.people.personChart.censusData[idx].name : []}
                                             titCon={this.props.people.personChart && this.props.people.personChart.censusData ?
-                                                `${(this.props.people.personChart.censusData[idx].count / 100).toFixed(2)}%` : 0}
+                                                `${(this.props.people.personChart.censusData[idx].count / this.props.people.chartTotal.censusTotal).toFixed(4) * 100}%` : 0}
                                             key={idx}>
                                             <span className={styles.LabelBg} style={{ background: `${colors}` }}></span>
                                         </ChartLabel>)
@@ -176,7 +196,8 @@ class Chart extends React.Component {
                                             >
 
                                                 {
-                                                    data02.map((entry, index) => <Cell stroke={COLORS02[index % COLORS02.length]} fill={COLORS02[index % COLORS02.length]} key={index} />)
+                                                    this.props.people.personChart && this.props.people.personChart.ageData &&
+                                                    this.props.people.personChart.ageData.map((entry, index) => <Cell stroke={COLORS02[index % COLORS02.length]} fill={COLORS02[index % COLORS02.length]} key={index} />)
                                                 }
                                                 <Label
                                                     position="center"
@@ -184,7 +205,7 @@ class Chart extends React.Component {
                                                     fill="#DBDBDB"
                                                 />
                                             </Pie>
-                                            <Tooltip cursor={{ fill: 'rgba(0,0,0,.2)' }} wrapperStyle={{ background: 'rgba(255,255,255,.3)' }} />
+                                            <Tooltip cursor={{ fill: 'rgba(0,0,0,.2)' }} wrapperStyle={{ background: 'rgba(255,255,255,.3)' }} content={this.tooltipType}/>
                                         </PieChart>
                                     </ResponsiveContainer>
                                 </div>
@@ -195,7 +216,7 @@ class Chart extends React.Component {
                                             titLabel={this.props.people.personChart && this.props.people.personChart.ageData ?
                                                 this.props.people.personChart.ageData[idx].name : []}
                                             titCon={this.props.people.personChart && this.props.people.personChart.ageData ?
-                                                `${(this.props.people.personChart.ageData[idx].count / 100).toFixed(2)}%` : 0}
+                                                `${(this.props.people.personChart.ageData[idx].count / this.props.people.chartTotal.ageTotal).toFixed(4) * 100}%` : 0}
                                             key={idx}>
                                             <span className={styles.LabelBg} style={{ background: `${colors}` }}></span>
                                         </ChartLabel>)
@@ -215,7 +236,12 @@ class Chart extends React.Component {
                                             this.props.people.tagChart : []}>
                                             <CartesianGrid stroke="#3F576F" />
                                             <XAxis dataKey="name" stroke="#DBDBDB" />
-                                            <Tooltip cursor={{ fill: 'rgba(0,0,0,.2)' }} wrapperStyle={{ background: 'rgba(255,255,255,.3)' }} />
+                                            <Tooltip
+                                                cursor={{ fill: 'rgba(0,0,0,.2)' }}
+                                                wrapperStyle={{ background: 'rgba(255,255,255,.3)' }}
+                                                cursor={false}
+                                                content={this.tooltipType1}
+                                            />
                                             <XAxis dataKey="name" tick={{ stroke: '#DBDBDB', strokeWidth: 1 }} />
                                             <Bar dataKey="count" fill="#3D938D" barSize={40}>
                                                 <LabelList dataKey="count" position="center" fill="#DBDBDB" />

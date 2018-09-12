@@ -83,6 +83,28 @@ class People extends React.Component {
             }
         })
     }
+    renderHousePeople = data => {
+        let housePeople = data ? data : []
+        return housePeople.map((v, i) => (
+            <div key={i} className={styles.totalNumber} >
+                <InfoCard
+                    titleLabel={v.name}
+                    titleCon={v.count}
+                />
+            </div>
+        ))
+    }
+    renderPeople = data => {
+        let people = data ? data : []
+        return people.map((v, i) => (
+            <div key={i} className={styles.totalType} >
+                <TotalCard
+                    totalLabel={v.name}
+                    totalCon={v.count}
+                />
+            </div>
+        ))
+    }
     formatTodayFace = (v, c) => {
         let rt = v.split(' ')[1].split(':')
         return rt[0] + ':' + rt[1]
@@ -100,7 +122,7 @@ class People extends React.Component {
         );
     }
     tooltipType = (props) => {
-        const { payload } = props
+        const payload = props.payload ? props.payload : []
         return (
             payload.map((entry, index) => (
                 <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>
@@ -110,7 +132,7 @@ class People extends React.Component {
         )
     }
     tooltipType1 = (props) => {
-        const { payload } = props
+        const payload = props.payload ? props.payload : []
         return (
             payload.map((entry, index) => (
                 <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>
@@ -149,7 +171,7 @@ class People extends React.Component {
                 <div className={styles.peopleCenter}>
                     <div className={styles.left}>
                         <Card titleLeft={'各社区人口'}>
-                            <Row gutter={20}>
+                            {/* <Row gutter={20}>
                                 {this.props.mapOrgCount.map((v, i) => (
                                     <Col className={styles.middleRow} span={8} key={i}>
                                         <InfoCard
@@ -158,25 +180,22 @@ class People extends React.Component {
                                         />
                                     </Col>
                                 ))}
-
-                            </Row>
+                            </Row> */}
+                            <div className={styles.totalNumberCard}>
+                                {this.renderHousePeople(this.props.mapOrgCount)}
+                            </div>
                         </Card>
                         <Card titleLeft={'人口标签'}>
-                            <Row gutter={20}>
-                                {this.props.mapTagCount.map((v, i) => (
-                                    <Col span={12} className={styles.middleRow} key={i}>
-                                        <TotalCard
-                                            totalLabel={v.name}
-                                            totalCon={v.count}
-                                        />
-                                    </Col>
-                                ))}
-
-                            </Row>
+                            <div className={styles.totalNumberCard}>
+                                {this.renderPeople(this.props.mapTagCount)}
+                            </div>
                         </Card>
                     </div>
                     <div className={styles.right}>
-                        <Card titleLeft={'人脸感知数据总量'} >
+                        <Card
+                            titleLeft={'人脸感知数据总量'}
+                            titleRight={this.props.mapOrgPerceiveAndFace && this.props.mapOrgPerceiveAndFace.faceTotal ? this.props.mapOrgPerceiveAndFace.faceTotal : '0'}
+                        >
                             <div style={{ width: '98%', margin: '1% auto', background: 'rgba(32, 52, 68, .7)' }}>
                                 <div>
                                     <UnreglarTitle title={'今日感知增量'} />
