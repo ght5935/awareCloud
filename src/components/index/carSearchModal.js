@@ -17,7 +17,7 @@ const Option = Select.Option;
 
 class SearchModal extends React.Component {
     state = {
-        tagType: ''
+        tagType: '0'
     }
     componentDidMount() {
         // this.props.dispatch({
@@ -124,14 +124,15 @@ class SearchModal extends React.Component {
                 data-id="icon_btn"
                 className={styles.searchModal}>
                 <Row>
-                    <Col span={12} className={styles.condition}>
+                    <Col span={14} className={styles.condition}>
                         <div className={styles.label}>车牌：</div>
                         <Select
-                            style={{ width: '22%' }}
+                            style={{ width: '25%' }}
                             dropdownMatchSelectWidth={false}
                             onChange={this.onSelectProvince}
                             value={`${carSearch.carSearchParams.province}`}
                         >
+                        <Option value=''> 全部</Option>
                             {data.provinceList && data.provinceList.length > 0 ?
                                 data.provinceList.map((value, i) =>
                                     <Option
@@ -140,14 +141,14 @@ class SearchModal extends React.Component {
                                 ) : null}
                         </Select>
                         <Input
-                            style={{ width: '50%' }}
+                            style={{ width: '45%' }}
                             onChange={this.onSelectLicences}
                         />
                     </Col>
-                    <Col span={12} className={styles.condition}>
+                    <Col span={10} className={styles.condition}>
                         <div className={styles.label}>车主：</div>
                         <Input
-                            style={{ width: '74%' }}
+                            style={{ width: '70%' }}
                             onChange={this.onSelectName}
                         />
                     </Col>

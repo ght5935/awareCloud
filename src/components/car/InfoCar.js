@@ -25,6 +25,7 @@ class InfoCar extends React.Component {
                     <Col span={24}>
                         <div className={styles.infoLeftCon}>
                             {
+                                carPerceive.length>0 ?
                                 carPerceive.map((item, idx) => (
                                     <div>
                                         <div style={{ marginBottom: 10 }}>
@@ -42,6 +43,7 @@ class InfoCar extends React.Component {
                                         </div>
                                     </div>)
                                 )
+                                : <div className={styles.noDom}> 无轨迹信息 </div>
                             }
                         </div>
                     </Col>

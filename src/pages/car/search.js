@@ -32,7 +32,13 @@ const Option = Select.Option;
 class Search extends React.Component {
   state = {
     resultVisible: false,
-    resultLabel: ''
+    resultLabel: '',
+    renderResult: false,
+    renderResultData: {
+      carImgSearchData: {
+        imageList: []
+      }
+    }
   }
   componentDidMount() {
     const carSearch = this.props.car.carSearch;
@@ -120,16 +126,28 @@ class Search extends React.Component {
   }
   onCancel = () => {
     this.setState({
-      resultVisible: false
+      resultVisible: false,
+      renderResult: false
+    })
+  }
+  onSelectModal = (data) => {
+    this.setState({
+      resultLabel: '车辆数',
+      renderResult: true,
+      renderResultData: {
+        carImgSearchData: {
+          imageList: data
+        }
+      }
     })
   }
   renderResultContainer = (resultLabel, data) => {
     let Ele;
-    let carImageDataList = data.carImageDataList ? data.carImageDataList : [];
-    let villageAmountDataList = data.villageAmountDataList ? data.villageAmountDataList : [];
+    let imageList = data.carImgSearchData && data.carImgSearchData.imageList ? data.carImgSearchData.imageList : [];
+    let vilDataList = data.carVilSearchData && data.carVilSearchData.vilDataList ? data.carVilSearchData.vilDataList : [];
     switch (resultLabel) {
       case '车辆数':
-        Ele = carImageDataList.map((item, idx) =>
+        Ele = imageList.map((item, idx) =>
           <Link to={`/car/info?carId=${item.carId}`} key={idx}>
             <div className={styles.resultCon1} >
               <img src={item.carImg} alt="" className={styles.resultCon1Img} />
@@ -148,11 +166,11 @@ class Search extends React.Component {
         )
         break;
       case '车辆所属社区数':
-        Ele = villageAmountDataList.map((item, idx) =>
-          <div className={styles.resultCon} key={idx}>
+        Ele = vilDataList.map((item, idx) =>
+          <div className={styles.resultCon} key={idx} onClick={this.onSelectModal.bind(this, item.carImageDataList)}>
             <ResultCard
-              titleLabel={item.name}
-              titleCon={item.amount}
+              titleLabel={item.villageName}
+              titleCon={item.carAmount}
             />
           </div>)
         break;
@@ -245,7 +263,7 @@ class Search extends React.Component {
                   <InfoiconCard
                     icons={smHouseIcon}
                     titLabel={'车辆数'}
-                    titCon={car.carInfoList ? car.carInfoList.carAmount : ''}
+                    titCon={car.carInfoList && car.carInfoList.carImgSearchData ? car.carInfoList.carImgSearchData.carCount : ''}
                     iSarrow={true}
                   />
                 </div>
@@ -255,7 +273,7 @@ class Search extends React.Component {
                   <InfoiconCard
                     icons={smHouseIcon}
                     titLabel={'车辆所属社区数'}
-                    titCon={car.carInfoList ? car.carInfoList.villageAmount : ''}
+                    titCon={car.carInfoList && car.carInfoList.carVilSearchData ? car.carInfoList.carVilSearchData.villageCount : ''}
                     iSarrow={true}
                   />
                 </div>
@@ -272,7 +290,10 @@ class Search extends React.Component {
           onCancel={this.onCancel}
         >
           <div className={`${styles.resultContainer} ${style.scrollbar}`}>
-            {this.renderResultContainer(this.state.resultLabel, car.carInfoList)}
+            {
+              this.state.renderResult ? this.renderResultContainer(this.state.resultLabel, this.state.renderResultData) :
+                this.renderResultContainer(this.state.resultLabel, car.carInfoList)
+            }
           </div>
         </ModalCard>
       </div>

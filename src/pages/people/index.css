@@ -2,11 +2,13 @@
     position: absolute;
     left: 1%;
     width: 26%;
+    top: 18%;
 }
 .right{
     position: absolute;
     right: 1%;
-    width: 26%
+    width: 26%;
+    top: 18%;
 }
 .middleRow{
     margin-bottom: 10px;
@@ -33,12 +35,6 @@
     position: absolute;
     top: -10%;
 }
-.peopleCenter{
-    position: absolute;
-    width: 100%;
-    top: 18%;
-}
-
 .PieCard {
     width: 160px;
     height: 160px;
@@ -408,6 +404,13 @@
 }
 
   /* info 一 屋一档 */
+  .noDom{
+    color: #fff;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 20px;
+}
 .info {
     width: 90%;
     height: 94%;

@@ -16,11 +16,11 @@ class InfoAlarm extends React.Component {
     render() {
         const houseInfo = this.props.house.houseInfo;
         const houseInfoData = houseInfo.houseInfoData;
-        const perceiveList = houseInfoData.perceiveList;
+        const perceiveList = houseInfoData.perceiveList ? houseInfoData.perceiveList : []
         return (
             <Card titleLeft={'警情信息'}>
                 {
-                    perceiveList ? perceiveList.map((item, idx) => (
+                    perceiveList.length > 0 ? perceiveList.map((item, idx) => (
                         <Row gutter={10} className={styles.middleRow} key={idx}>
                             <Col span={24}>
                                 <div className={styles.infoLeftCon}>
@@ -49,7 +49,7 @@ class InfoAlarm extends React.Component {
                                 </div>
                             </Col>
                         </Row>
-                    )) : ''
+                    )) : <div className={styles.noDom}> 无信息 </div>
                 }
             </Card>
         )

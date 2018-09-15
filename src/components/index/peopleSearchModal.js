@@ -96,9 +96,9 @@ class HighSearchModal extends React.Component {
                     <Col span={24} className={styles.condition}>
                         <div className={styles.label}>标签：</div>
                         <Radio.Group value={`${globalData.peopleSearch.tag}`} onChange={this.onSelectTag} style={{ width: '88%', textAlign: 'left' }}>
+                            <Radio.Button value='' className={styles.radios} >不 限</Radio.Button>
                             {globalData.allTag && globalData.allTag.length > 0 ?
                                 globalData.allTag.map((value) =>
-
                                     <Radio.Button
                                         value={`${value.id}`}
                                         key={value.id}

@@ -275,6 +275,7 @@ class HighSearchModal extends React.Component {
                     <Col span={10} className={styles.condition}>
                         <div className={styles.label}>性别：</div>
                         <Radio.Group value={this.props.totalSearchParams.gender} onChange={this.onGenderChange} style={{ width: '67.5%', borderRadius: '4px', textAlign: 'center', height: '30px', lineHeight: '30px', background: 'rgba(32, 52, 68, .7)' }}>
+                            <Radio className={style.radios} value=''><span style={{ color: '#fff' }}>不限</span></Radio>
                             <Radio className={style.radios} value={1}><span style={{ color: '#fff' }}>男</span></Radio>
                             <Radio className={style.radios} value={0}><span style={{ color: '#fff' }}>女</span></Radio>
                         </Radio.Group>

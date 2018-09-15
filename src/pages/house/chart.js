@@ -53,7 +53,7 @@ class Chart extends React.Component {
             return <ChartLabel
                 key={idx}
                 titLabel={item.houseAttribute}
-                titCon={`${(item.count / totalNum).toFixed(4)*100}%`}
+                titCon={`${((item.count / totalNum) * 100).toFixed(2)}%`}
             >
                 <span className={styles.LabelBg} style={{ background: `${item.htmlColor}` }}></span>
             </ChartLabel>

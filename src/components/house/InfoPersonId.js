@@ -9,6 +9,7 @@ import InfoiconCard from '../../components/common/InfoiconCard';
 
 import smPhoneIcon from '../../assets/home/phone-icon.png';
 
+import style from '../../style/common/common.css';
 import styles from '../../pages/house/index.css';
 
 import r from '../../assets/r.jpeg';
@@ -41,7 +42,7 @@ class InfoPersonId extends React.Component {
                         let Ele;
                         if (v.id == houseInfo.personDetailId) {
                             Ele = (
-                                <div className={styles.infoRightContainer} key={i}>
+                                <div className={`${styles.infoRightContainer} ${style.scrollbar}`}  key={i}>
                                     <div style={{ marginBottom: 10 }}>
                                         <UnreglarTitle
                                             title={"照片信息"}
@@ -51,7 +52,6 @@ class InfoPersonId extends React.Component {
                                     <Row gutter={10} className={styles.middleRow}>
                                         <Col span={24}>
                                             <div className={styles.infoLeftBg} >
-                                                {/* <img src={r} style={{ width: 115, height: 154 }} alt="" /> */}
                                                 <img src={v.img && v.img.length > 0 ? v.img[0] : ''} style={{ width: 115, height: 154 }} alt="" />
                                             </div>
                                         </Col>

@@ -168,10 +168,9 @@ class People extends React.Component {
                         </Link>
                     </div>
                 </div>
-                <div className={styles.peopleCenter}>
-                    <div className={styles.left}>
-                        <Card titleLeft={'各社区人口'}>
-                            {/* <Row gutter={20}>
+                <div className={styles.left}>
+                    <Card titleLeft={'各社区人口'}>
+                        {/* <Row gutter={20}>
                                 {this.props.mapOrgCount.map((v, i) => (
                                     <Col className={styles.middleRow} span={8} key={i}>
                                         <InfoCard
@@ -181,68 +180,67 @@ class People extends React.Component {
                                     </Col>
                                 ))}
                             </Row> */}
-                            <div className={styles.totalNumberCard}>
-                                {this.renderHousePeople(this.props.mapOrgCount)}
-                            </div>
-                        </Card>
-                        <Card titleLeft={'人口标签'}>
-                            <div className={styles.totalNumberCard}>
-                                {this.renderPeople(this.props.mapTagCount)}
-                            </div>
-                        </Card>
-                    </div>
-                    <div className={styles.right}>
-                        <Card
-                            titleLeft={'人脸感知数据总量'}
-                            titleRight={this.props.mapOrgPerceiveAndFace && this.props.mapOrgPerceiveAndFace.faceTotal ? this.props.mapOrgPerceiveAndFace.faceTotal : '0'}
-                        >
-                            <div style={{ width: '98%', margin: '1% auto', background: 'rgba(32, 52, 68, .7)' }}>
-                                <div>
-                                    <UnreglarTitle title={'今日感知增量'} />
-                                </div>
-                                <ResponsiveContainer width="100%" height={200} >
-                                    <BarChart data={this.props.mapOrgPerceiveAndFace.perceiveData} margin={{ top: 30, right: 10, left: 10, bottom: 5 }}>
-                                        <defs>
-                                            <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                                                <stop offset="5%" stopColor="#063EAF" stopOpacity={0.35} />
-                                                <stop offset="95%" stopColor="#22C9DC" />
-                                            </linearGradient>
-                                        </defs>
-                                        {/* <CartesianGrid stroke="#3F576F" /> */}
-                                        <XAxis tick={<BarTick />} dataKey="name" stroke="#ccc" />
-                                        <Tooltip
-                                            cursor={{ fill: 'rgba(0,0,0,.2)' }}
-                                            wrapperStyle={{ background: 'rgba(255,255,255,.3)' }}
-                                            content={this.tooltipType}
-                                        />
-                                        <Bar dataKey="count" barSize={20} fill="url(#colorPv)">
-                                            <LabelList dataKey="count" content={this.renderCustomizedLabel} />
-                                        </Bar>
-                                    </BarChart>
-                                </ResponsiveContainer>
-                            </div>
-                        </Card>
-                        <Card titleLeft={'人脸识别感知实时统计'} >
-                            <div style={{ width: '98%', margin: '1% auto', background: 'rgba(32, 52, 68, .7)' }}>
-                                <ResponsiveContainer width="100%" height={200}>
-                                    <LineChart data={this.props.todayFace} margin={{ top: 30, right: 10, left: 10, bottom: 5 }}>
-                                        <XAxis dataKey="time" stroke="#3F576F" tickFormatter={this.formatTodayFace} />
-                                        <YAxis />
-                                        <CartesianGrid stroke="#3F576F" />
-                                        <Tooltip
-                                            cursor={{ fill: 'rgba(0,0,0,.2)' }}
-                                            wrapperStyle={{ background: 'rgba(255,255,255,.3)' }}
-                                            content={this.tooltipType1}
-                                        />
-                                        <Line type="monotone" dataKey="count" stroke="#8884d8" activeDot={{ r: 8 }} />
-                                        {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
-                                    </LineChart>
-                                </ResponsiveContainer>
-                            </div>
-                        </Card>
-                    </div>
-                    {this.props.global.searchHouseVisible ? <SearchHighModal /> : ''}
+                        <div className={styles.totalNumberCard}>
+                            {this.renderHousePeople(this.props.mapOrgCount)}
+                        </div>
+                    </Card>
+                    <Card titleLeft={'人口标签'}>
+                        <div className={styles.totalNumberCard}>
+                            {this.renderPeople(this.props.mapTagCount)}
+                        </div>
+                    </Card>
                 </div>
+                <div className={styles.right}>
+                    <Card
+                        titleLeft={'人脸感知数据总量'}
+                        titleRight={this.props.mapOrgPerceiveAndFace && this.props.mapOrgPerceiveAndFace.faceTotal ? this.props.mapOrgPerceiveAndFace.faceTotal : '0'}
+                    >
+                        <div style={{ width: '98%', margin: '1% auto', background: 'rgba(32, 52, 68, .7)' }}>
+                            <div>
+                                <UnreglarTitle title={'今日感知增量'} />
+                            </div>
+                            <ResponsiveContainer width="100%" height={200} >
+                                <BarChart data={this.props.mapOrgPerceiveAndFace.perceiveData} margin={{ top: 30, right: 10, left: 10, bottom: 5 }}>
+                                    <defs>
+                                        <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="5%" stopColor="#063EAF" stopOpacity={0.35} />
+                                            <stop offset="95%" stopColor="#22C9DC" />
+                                        </linearGradient>
+                                    </defs>
+                                    {/* <CartesianGrid stroke="#3F576F" /> */}
+                                    <XAxis tick={<BarTick />} dataKey="name" stroke="#ccc" />
+                                    <Tooltip
+                                        cursor={{ fill: 'rgba(0,0,0,.2)' }}
+                                        wrapperStyle={{ background: 'rgba(255,255,255,.3)' }}
+                                        content={this.tooltipType}
+                                    />
+                                    <Bar dataKey="count" barSize={20} fill="url(#colorPv)">
+                                        <LabelList dataKey="count" content={this.renderCustomizedLabel} />
+                                    </Bar>
+                                </BarChart>
+                            </ResponsiveContainer>
+                        </div>
+                    </Card>
+                    <Card titleLeft={'人脸识别感知实时统计'} >
+                        <div style={{ width: '98%', margin: '1% auto', background: 'rgba(32, 52, 68, .7)' }}>
+                            <ResponsiveContainer width="100%" height={200}>
+                                <LineChart data={this.props.todayFace} margin={{ top: 30, right: 10, left: 10, bottom: 5 }}>
+                                    <XAxis dataKey="time" stroke="#3F576F" tickFormatter={this.formatTodayFace} />
+                                    <YAxis />
+                                    <CartesianGrid stroke="#3F576F" />
+                                    <Tooltip
+                                        cursor={{ fill: 'rgba(0,0,0,.2)' }}
+                                        wrapperStyle={{ background: 'rgba(255,255,255,.3)' }}
+                                        content={this.tooltipType1}
+                                    />
+                                    <Line type="monotone" dataKey="count" stroke="#8884d8" activeDot={{ r: 8 }} />
+                                    {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
+                                </LineChart>
+                            </ResponsiveContainer>
+                        </div>
+                    </Card>
+                </div>
+                {this.props.global.searchHouseVisible ? <SearchHighModal /> : ''}
             </div>
         )
     }

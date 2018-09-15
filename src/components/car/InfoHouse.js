@@ -23,7 +23,10 @@ class InfoHouse extends React.Component {
                 <Row gutter={10} className={styles.middleRow}>
                     <Col span={24}>
                         <div className={styles.infoLeftBg} >
-                            <img src={carHouseData && carHouseData.houseImg ? carHouseData.houseImg : ''} />
+                            {carHouseData && carHouseData.houseImg ?
+                                <img src={carHouseData.houseImg} />
+                                : <div className={styles.noDom}> 无图片信息 </div>
+                            }
                         </div>
                     </Col>
                 </Row>

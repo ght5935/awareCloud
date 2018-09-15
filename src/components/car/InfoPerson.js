@@ -9,7 +9,8 @@ import InfoiconCard from '../../components/common/InfoiconCard';
 
 import smPhoneIcon from '../../assets/home/phone-icon.png';
 
-import styles from '../../pages/house/index.css';
+import style from '../../style/common/common.css';
+import styles from '../../pages/car/index.css';
 
 import r from '../../assets/r.jpeg';
 
@@ -37,7 +38,7 @@ class InfoPerson extends React.Component {
         const carOwnerData = carInfoData.carOwnerData
         return (
             <Card titleLeft={'人员信息'}>
-                <div className={styles.infoRightContainer} key={'i'}>
+                <div className={`${styles.infoRightContainer} ${style.scrollbar}`} key={'i'}>
                     <div style={{ marginBottom: 10 }}>
                         <UnreglarTitle
                             title={"照片信息"}
@@ -113,8 +114,8 @@ class InfoPerson extends React.Component {
                             />
                         </Col>
                     </Row>
-                    <Row gutter={10} className={styles.middleRow}>
-                        <Col span={24}>
+                    <Row className={styles.middleRow}>
+                        <Col span={24} >
                             <InfoiconCard
                                 icons={smPhoneIcon}
                                 titLabel={'身份证号'}
@@ -123,7 +124,7 @@ class InfoPerson extends React.Component {
                             />
                         </Col>
                     </Row>
-                    <Row gutter={10} className={styles.middleRow}>
+                    <Row>
                         <Link to={`/people/info?personId=${carOwnerData ? carOwnerData.id : ''}`}>
                             <div className={styles.infoBtn}>一人一档</div>
                         </Link>

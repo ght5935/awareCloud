@@ -31,7 +31,12 @@ class Total extends React.Component {
   state = {
     resultVisible: false,
     resultLabel: '',
-    renderResult: false
+    renderResult: false,
+    renderResultData: {
+      houseImgSearchData: {
+        houseImageDataList: []
+      }
+    }
   }
   componentDidMount() {
     const houseHome = this.props.house.houseHome;
@@ -122,30 +127,35 @@ class Total extends React.Component {
       renderResult: false
     })
   }
-  onSelectModal = (id) => {
-    const house = this.props.house;
-    const { houseHome } = house;
-    this.props.dispatch({
-      type: 'house/success',
-      payload: {
-        houseHome: {
-          ...houseHome,
-          villageOrgunitId: id
-        }
-      }
-    })
-    this.props.dispatch({
-      type: 'house/getHouseInfoByOrgunitId'
-    })
+  onSelectModal = (data) => {
+    // const house = this.props.house;
+    // const { houseHome } = house;
+    // this.props.dispatch({
+    //   type: 'house/success',
+    //   payload: {
+    //     houseHome: {
+    //       ...houseHome,
+    //       villageOrgunitId: id
+    //     }
+    //   }
+    // })
+    // this.props.dispatch({
+    //   type: 'house/getHouseInfoByOrgunitId'
+    // })
     this.setState({
       resultLabel: '房屋数',
-      renderResult: true
+      renderResult: true,
+      renderResultData: {
+        houseImgSearchData: {
+          houseImageDataList: data
+        }
+      }
     })
   }
   renderResultContainer = (resultLabel, data) => {
     let Ele;
-    let villageAmountDataList = data.villageAmountDataList ? data.villageAmountDataList : [];
-    let houseImageDataList = data.houseImageDataList ? data.houseImageDataList : [];
+    let houseImageDataList = data.houseImgSearchData && data.houseImgSearchData.houseImageDataList ? data.houseImgSearchData.houseImageDataList : [];
+    let villageData = data.houseVilSearchData && data.houseVilSearchData.villageData ? data.houseVilSearchData.villageData : [];
     switch (resultLabel) {
       case '房屋数':
         Ele = houseImageDataList.map((item, idx) =>
@@ -163,11 +173,11 @@ class Total extends React.Component {
         )
         break;
       case '房屋所属社区数':
-        Ele = villageAmountDataList.map((item, idx) =>
-          <div className={styles.resultCon} key={idx} onClick={this.onSelectModal.bind(this, item.id)}>
+        Ele = villageData.map((item, idx) =>
+          <div className={styles.resultCon} key={idx} onClick={this.onSelectModal.bind(this, item.houseImageDataList)}>
             <ResultCard
-              titleLabel={item.name}
-              titleCon={item.amount}
+              titleLabel={item.villageName}
+              titleCon={item.houseAmount}
             />
           </div>)
         break;
@@ -271,21 +281,21 @@ class Total extends React.Component {
           <Card titleLeft={'搜索结果'}>
             <Row className={styles.middleRow} gutter={20}>
               <Col span={12}>
-                <div className={styles.middleCard} onClick={this.resultClick.bind(this, '房屋数', houseHome.HouseList.houseAmount)}>
+                <div className={styles.middleCard} onClick={this.resultClick.bind(this, '房屋数')}>
                   <InfoiconCard
                     icons={smHouseIcon}
                     titLabel={'房屋数'}
-                    titCon={houseHome.HouseList ? houseHome.HouseList.houseAmount : ''}
+                    titCon={houseHome.HouseList && houseHome.HouseList.houseImgSearchData && houseHome.HouseList.houseImgSearchData.count ? houseHome.HouseList.houseImgSearchData.count : ''}
                     iSarrow={true}
                   />
                 </div>
               </Col>
               <Col span={12}>
-                <div className={styles.middleCard} onClick={this.resultClick.bind(this, '房屋所属社区数', houseHome.HouseList.villageAmount)}>
+                <div className={styles.middleCard} onClick={this.resultClick.bind(this, '房屋所属社区数')}>
                   <InfoiconCard
                     icons={smHouseIcon}
                     titLabel={'房屋所属社区数'}
-                    titCon={houseHome.HouseList ? houseHome.HouseList.villageAmount : ''}
+                    titCon={houseHome.HouseList && houseHome.HouseList.houseVilSearchData && houseHome.HouseList.houseVilSearchData.count ? houseHome.HouseList.houseVilSearchData.count : ''}
                     iSarrow={true}
                   />
                 </div>
@@ -303,7 +313,7 @@ class Total extends React.Component {
         >
           <div className={`${styles.resultContainer} ${style.scrollbar}`}>
             {
-              this.state.renderResult ? this.renderResultContainer(this.state.resultLabel, houseHome.villageOrgunitIdList) :
+              this.state.renderResult ? this.renderResultContainer(this.state.resultLabel, this.state.renderResultData) :
                 this.renderResultContainer(this.state.resultLabel, houseHome.HouseList)
             }
           </div>

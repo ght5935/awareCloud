@@ -9,7 +9,7 @@ import * as Utils from '../../utils/utils';
 
 import style from '../../style/common/common.css';
 import styles from '../../pages/house/index.css';
-import w from '../../assets/w.jpg';
+
 const Option = Select.Option;
 class InfoIndeed extends React.Component {
     componentDidMount() {
@@ -21,15 +21,21 @@ class InfoIndeed extends React.Component {
         return (
             <Card titleLeft={'现有信息'}>
                 {
-                    relatedInfo.map((v, i) => (
-                        <Row gutter={10} className={styles.middleRow} key={i}>
-                            <Col span={24}>
-                                <div className={styles.infoLeftBg} >
-                                    <img src={v} />
-                                </div>
-                            </Col>
-                        </Row>
-                    ))
+                    relatedInfo.length > 0 ?
+                        <div className={`${styles.infoRightContainer} ${style.scrollbar}`}>
+                            {
+                                relatedInfo.map((v, i) => (
+                                    <Row gutter={10} className={styles.middleRow} key={i}>
+                                    <Col span={24}>
+                                        <div className={styles.infoLeftBg} >
+                                            <img src={v} />
+                                        </div>
+                                    </Col>
+                                </Row>
+                                ))
+                            }
+                        </div>
+                        : <div className={styles.noDom}> 无现有信息 </div>
                 }
             </Card>
         )

@@ -6,9 +6,9 @@ import Card from '../../components/common/Card';
 import UnreglarTitle from '../../components/common/UnreglarTitle';
 
 import lineImg from '../../assets/home/Line01.png';
-
+import style from '../../style/common/common.css';
 import styles from '../../pages/house/index.css';
-import r from '../../assets/r.jpeg';
+
 
 class InfoPerson extends React.Component {
     componentDidMount() {
@@ -31,12 +31,12 @@ class InfoPerson extends React.Component {
     render() {
         const houseInfo = this.props.house.houseInfo;
         const houseInfoData = houseInfo.houseInfoData;
-        const personList = houseInfoData.personList;
+        const personList = houseInfoData.personList && houseInfoData.personList.length > 0 ? houseInfoData.personList : []
         return (
             <Card titleLeft={'人员信息'}>
                 {
-                    personList ? personList.map((item, idx) => (
-                        <div className={styles.infoRightContainer} key={idx}>
+                    personList.length > 0 ? personList.map((item, idx) => (
+                        <div className={`${styles.infoRightContainer} ${style.scrollbar}`} key={idx}>
                             <div style={{ marginBottom: 10 }}>
                                 <UnreglarTitle
                                     title={"照片信息"}
@@ -67,7 +67,7 @@ class InfoPerson extends React.Component {
                                 </div>
                             </div>
                         </div>
-                    )) : ''
+                    )) : <div className={styles.noDom}> 无人员信息 </div>
                 }
             </Card>
         )

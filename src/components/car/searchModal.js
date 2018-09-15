@@ -410,6 +410,7 @@ class SearchModal extends React.Component {
                             onChange={this.onSelectTag}
                             value={`${carSearch.carSearchParams.plate_type}`}
                         >
+                            <Radio.Button value=''> 不 限</Radio.Button>
                             {car.plateList && car.plateList.length > 0 ?
                                 car.plateList.map((value) =>
                                     <Radio.Button

@@ -69,11 +69,10 @@
 }
 .searchModal {
     width: 536px;
-    /* height: 280px; */
     background: rgba(34, 40, 52, .7);
     position: absolute;
     left: 50%;
-    top: 21%;
+    top: 20%;
     transform: translateX(-50%);
     border: 13px solid transparent;
     border-image: url(../../assets/common/aim.png) 13 13 round;
@@ -82,7 +81,6 @@
     animation-duration: .1s;
     animation-fill-mode: forwards;
     animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2); 
-    /*animation-play-state: paused; */
 }
 .condition{
     /* display: flex; */
@@ -274,6 +272,13 @@
 }
 
   /* info 一 屋一档 */
+  .noDom{
+    color: #fff;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 20px;
+}
 .title{
     font-size: 20px;
     color: #FFFFFF;
@@ -374,8 +379,11 @@
     float: right;
   }
   .infoRightContainer {
-      position: relative;
-      margin-bottom: 10px;
+    position: relative;
+    margin-bottom: 10px;
+    overflow-y: auto;
+    height: 676px;
+    box-sizing: border-box;
   }
   .infoRightBtn {
       border-radius: 6px;
@@ -551,5 +559,8 @@
 }
 .condition :global(.ant-radio-button-wrapper:first-child){
     border-radius: 4px;
+}
+.condition :global(.ant-radio-wrapper){
+    margin: 0
 }
 

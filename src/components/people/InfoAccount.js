@@ -39,7 +39,7 @@ class InfoAccount extends React.Component {
                                         </div>
                                     </div>
                                 ))
-                                : ''}
+                                : <div className={styles.noDom}> 无门禁信息 </div>}
                         </div>
 
                     </Col>

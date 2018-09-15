@@ -32,11 +32,11 @@ class InfoFacetrack extends React.Component {
                                         </div>
                                         <div className={styles.infoLeftBg}>
                                             <span className={styles.infoLeftLabel}> 时间 </span>
-                                            <span className={styles.infoLeftTxt}> {v.perceptionTime} </span>
+                                            <span className={styles.infoLeftTxt}> {v.time} </span>
                                         </div>
                                         <div className={styles.infoLeftBg}>
                                             <span className={styles.infoLeftLabel}> 关卡 </span>
-                                            <span className={styles.infoLeftTxt}> {v.name} </span>
+                                            <span className={styles.infoLeftTxt}> {v.address} </span>
                                         </div>
                                     </div>
                                 ))

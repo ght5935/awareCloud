@@ -304,6 +304,13 @@
 }
 
   /* info 一 屋一档 */
+  .noDom{
+    color: #fff;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 20px;
+}
   .info {
       width: 90%;
       height: 94%;
@@ -335,10 +342,9 @@
 }
 .infoRight {
     position: absolute;
-    right: 1%;
-    width: 22%;
+    right: 0;
+    width: 24%;
     height: 118%;
-    overflow: auto;
 }
 .infoBottom {
     width: 45%;
@@ -407,8 +413,12 @@
     float: right;
   }
   .infoRightContainer {
-      position: relative;
-      margin-bottom: 10px;
+    position: relative;
+    margin-bottom: 10px;
+    overflow-y: auto;
+    max-height: 676px;
+    padding:  0 15px;
+    box-sizing: border-box;
   }
   .infoRightBtn {
       border-radius: 6px;

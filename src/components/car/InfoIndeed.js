@@ -24,8 +24,15 @@ class InfoIndeed extends React.Component {
             <Card titleLeft={'现有信息'}>
                 <Row gutter={10} className={styles.middleRow}>
                     <Col span={24}>
-                        <div className={styles.infoLeftBg} >
-                            <img src={carInfoData && carInfoData.carOwnerData && carInfoData.carOwnerData.licenseImg ? carInfoData.carOwnerData.licenseImg : ''} />
+                        <div className={`${style.scrollbar}`} style={{ maxHeight: 460, overflowY: 'auto' }}>
+                            {
+                                carInfoData && carInfoData.carOwnerData && carInfoData.carOwnerData.licenseImg && carInfoData.carOwnerData.licenseImg.length > 0 ?
+                                    carInfoData.carOwnerData.licenseImg.map((v, i) =>
+                                        <div className={styles.infoLeftBg} key={i}>
+                                            <img src={v} />
+                                        </div>)
+                                    : <div className={styles.noDom}> 无信息 </div>
+                            }
                         </div>
                     </Col>
                 </Row>

@@ -189,7 +189,7 @@ export default {
             const response = yield call(getPlateType, {});
             if (isApiSuccess(response)) {
                 const result = apiData(response);
-                result.unshift({ "plateType": 0, "plateTypeStr": "不限" })
+                // result.unshift({ "plateType": 0, "plateTypeStr": "不限" })
                 yield put({
                     type: 'success',
                     payload: {

@@ -116,7 +116,10 @@ class Info extends React.Component {
                             <Row gutter={10} className={styles.middleRow}>
                                 <Col span={24}>
                                     <div className={styles.infoLeftBg} >
+                                        { houseInfoData.houseImage ? 
                                         <img src={houseInfoData.houseImage} />
+                                        : <div className={styles.noDom}> 无图片信息 </div>
+                                     }
                                     </div>
                                 </Col>
                             </Row>

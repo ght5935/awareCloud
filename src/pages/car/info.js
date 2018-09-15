@@ -113,7 +113,12 @@ class Info extends React.Component {
                             <Row gutter={10} className={styles.middleRow}>
                                 <Col span={24}>
                                     <div className={styles.infoLeftBg} >
-                                        <img src={carBaseData && carBaseData.carImg ? carBaseData.carImg : ''} />
+                                        {
+                                            carBaseData && carBaseData.carImg ?
+                                                <img src={carBaseData.carImg} />
+                                                : <div className={styles.noDom}> 无图片信息 </div>
+                                        }
+
                                     </div>
                                 </Col>
                             </Row>
@@ -157,7 +162,7 @@ class Info extends React.Component {
                             selectedKey={this.state.circleIndex}
                         />
                     </div>
-                    <div className={styles.infoRight}>
+                    <div className={`${styles.infoRight}`}>
                         {this.renderCircle(this.state.circleIndex)}
                     </div>
                 </div>

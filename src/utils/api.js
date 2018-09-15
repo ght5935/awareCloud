@@ -38,7 +38,7 @@ export const getPersonTagChartByOrgId = `${API_PREFIX}/poi/getPersonTagChartByOr
 export const getPersonChartByOrgId = `${API_PREFIX}/poi/getPersonChartByOrgId.do`;
 
 export const getPersonDetailById = `${API_PREFIX}/poi/getPersonDetailById.do`;
-export const getPersonFacePerveiceById = `${API_PREFIX}/poi/getPersonFacePerveiceById.do`;
+export const getPersonFacePerveiceById = `${API_PREFIX}/poi/getPersonFaceById.do`;
 export const getPersonAccessControlById = `${API_PREFIX}/poi/getPersonAccessControlById.do`;
 export const getCarInfoByPersonId = `${API_PREFIX}/poi/getCarInfoByPersonId.do`;
 export const getHouseInfoByPersonId = `${API_PREFIX}/poi/getHouseInfoByPersonId.do`;

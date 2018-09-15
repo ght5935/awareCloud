@@ -164,9 +164,9 @@ class SearchResult extends React.Component {
   }
   renderResultContainer = (resultLabel, data) => {
     let Ele = '';
-    let personTotalData = data.personTotalData && data.personTotalData.personDetailData ? data.personTotalData.personDetailData : []
-    let personOrgData = data.personOrgData && data.personOrgData.orgData ? data.personOrgData.orgData : []
-    let personCarData = data.personCarData && data.personCarData.personCarData ? data.personCarData.personCarData : [];
+    let personTotalData = data && data.personTotalData && data.personTotalData.personDetailData ? data.personTotalData.personDetailData : []
+    let personOrgData = data && data.personOrgData && data.personOrgData.orgData ? data.personOrgData.orgData : []
+    let personCarData = data && data.personCarData && data.personCarData.personCarData ? data.personCarData.personCarData : [];
     switch (resultLabel) {
       case '人员总数':
         Ele = personTotalData.map((item, idx) =>
@@ -196,7 +196,7 @@ class SearchResult extends React.Component {
           <div className={styles.resultCon} key={idx} onClick={this.onSelectModal.bind(this, item.id)}>
             <ResultCard
               titleLabel={item.name}
-              titleCon={item.sortNum}
+              titleCon={item.personDetailData&&item.personDetailData.length>0?item.personDetailData.length:''}
             />
           </div>)
         break;
@@ -214,8 +214,8 @@ class SearchResult extends React.Component {
                 iSarrow={false}
               />
               <InfoiconCard
-                titLabel={'身份证号'}
-                titCon={item.personData && item.personData.identityCard ? item.personData.identityCard : ''}
+                titLabel={'车牌号'}
+                titCon={item.carData && item.carData.plateNumber ? `${item.carData.abbreviation}${item.carData.plateNumber}` : ''}
                 iSarrow={false}
               />
             </div>

@@ -41,15 +41,20 @@ class InfoCar extends React.Component {
         return (
             <Card
                 titleLeft={data && data.length > 0 && data[0].carDetailData ? `${data[0].carDetailData.abbreviation}${data[0].carDetailData.plateNumber}` : '无'}
-                titleRight={data && data.length > 1 && data[1].carDetailData ? `${data[1].carDetailData.abbreviation}${data[1].carDetailData.plateNumber}` : ''}
+                titleRight={data && data.length > 1 && data[1].carDetailData ? `${data[0].carDetailData.abbreviation}${data[1].carDetailData.plateNumber}` : ''}
                 onTabClick={this.onTabClick}
                 tabIndex={this.state.infoCarIndex}
             >
                 <Row gutter={10} className={styles.middleRow}>
                     <Col span={24}>
+                    {
+                        data && data.length > 0 ? 
                         <div className={styles.infoLeftBg} >
                             <img src={data && data.length > 0 ? data[this.state.infoCarIndex].carDetailData.img[0] : ''} alt="" />
-                        </div>
+                        </div> 
+                        : <div className={styles.noDom}> 无图片信息 </div>
+                    }
+                        
                     </Col>
                 </Row>
                 {data && data.length > 0 ? data[this.state.infoCarIndex].perceviceDetailDatas && data[this.state.infoCarIndex].perceviceDetailDatas.length > 0 ?
@@ -65,11 +70,11 @@ class InfoCar extends React.Component {
                                         </div>
                                         <div className={styles.infoLeftBg}>
                                             <span className={styles.infoLeftLabel}> 时间 </span>
-                                            <span className={styles.infoLeftTxt}> {v.perceptionTime} </span>
+                                            <span className={styles.infoLeftTxt}> {v.captureTime} </span>
                                         </div>
                                         <div className={styles.infoLeftBg}>
                                             <span className={styles.infoLeftLabel}> 关卡 </span>
-                                            <span className={styles.infoLeftTxt}> {v.name} </span>
+                                            <span className={styles.infoLeftTxt}> {v.address} </span>
                                         </div>
                                     </div>
                                 )}

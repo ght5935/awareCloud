@@ -503,7 +503,7 @@ class HighSearchModal extends React.Component {
                         <Radio.Group
                             style={{ width: '88%', textAlign: 'center' }}
                             onChange={this.onSelectTag}
-                            value={houseHomeParams.attribute_id ? houseHomeParams.attribute_id : ''}
+                            value={houseHomeParams.attribute_id ? houseHomeParams.attribute_id : '0'}
                         >
                             {houseHome.AttributeList && houseHome.AttributeList.length > 0 ?
                                 houseHome.AttributeList.map((value) =>
