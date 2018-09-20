@@ -72,7 +72,7 @@
     box-sizing: border-box;
 }
 .resultCon1Img {
-    width: 150px;
+    /* width: 150px; */
     height: 120px;
     display: block;
     margin: 0 auto;
@@ -136,18 +136,18 @@
     color:#fff;
 }
 .totalNumberCard1 :global(.ant-table-body) table {
-   border: 0;
+   border: 0 !important;
 }
 .totalNumberCard1 :global(.ant-table-thead) tr th {
     background: transparent;
     color:#fff;
-    border: 1px solid #3F576F;
+    border: 1px solid #3F576F !important;
 }
 .totalNumberCard1 :global(.ant-table-thead) tr {
-    border: 1px solid #3F576F;
+    border: 1px solid #3F576F !important;
 }
 .totalNumberCard1 :global(.ant-table-tbody) tr td{
-    border: 1px solid #3F576F;
+    border: 1px solid #3F576F !important;
 }
 .totalNumberCard1 :global(.ant-table-tbody) tr:hover td{
     background: #0b3b52;
@@ -162,6 +162,12 @@
   .searchModal :global(.ant-select-arrow), .selectTop :global(.ant-select-arrow) {
     color: #FFF;
   }
+  .carousel{
+    /* height: 100%; */
+    color: aliceblue;
+    text-align: center;
+    font-size: 18px;
+}
 /* search */
 .searchLeft{
     position: absolute;

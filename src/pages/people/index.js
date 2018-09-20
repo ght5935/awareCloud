@@ -57,6 +57,12 @@ class People extends React.Component {
     componentDidMount() {
         var _this = this;
         // document.addEventListener('click', docClick.bind(this, _this));
+        this.props.dispatch({
+            type: 'people/success',
+            payload: {
+                iSLoop: true
+            }
+        })
         window.g_app._store.dispatch({
             type: 'people/getTodayFace'
         })
@@ -80,6 +86,12 @@ class People extends React.Component {
                 mapOrgPerceiveAndFace: [],
                 todayFace: [],
                 searchHouseVisible: false
+            }
+        })
+        this.props.dispatch({
+            type: 'people/success',
+            payload: {
+                iSLoop: false
             }
         })
     }
@@ -157,7 +169,7 @@ class People extends React.Component {
                         <Row>
                             <Col span={24} className={styles.selectTop}>
                                 <span className={styles.title}>实有人口</span>
-                                <span className={styles.title} style={{ fontSize: 15 }}>-人口搜索</span>
+                                <span className={styles.title} style={{ fontSize: 15 }}>-人口统计</span>
                             </Col>
                         </Row>
                         <img src={searchIcon} className={styles.titleIcon} onClick={this.searchModalClick} data-id="icon_btn" />
@@ -193,7 +205,7 @@ class People extends React.Component {
                 <div className={styles.right}>
                     <Card
                         titleLeft={'人脸感知数据总量'}
-                        titleRight={this.props.mapOrgPerceiveAndFace && this.props.mapOrgPerceiveAndFace.faceTotal ? this.props.mapOrgPerceiveAndFace.faceTotal : '0'}
+                        titleRight={this.props.mapOrgPerceiveAndFace && this.props.mapOrgPerceiveAndFace.total ? this.props.mapOrgPerceiveAndFace.total : '0'}
                     >
                         <div style={{ width: '98%', margin: '1% auto', background: 'rgba(32, 52, 68, .7)' }}>
                             <div>

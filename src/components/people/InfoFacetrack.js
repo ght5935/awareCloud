@@ -40,7 +40,7 @@ class InfoFacetrack extends React.Component {
                                         </div>
                                     </div>
                                 ))
-                                : ''}
+                                : <div className={styles.noDom}> 无轨迹信息 </div>}
                         </div>
                     </Col>
                 </Row>

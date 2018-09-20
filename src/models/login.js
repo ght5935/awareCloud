@@ -42,7 +42,6 @@ export default {
         }
       });
       const { username, password, remember } = payload;
-      console.log('%cusername','color:green', username)
 
       const pwdMD5 = MD5(password).toString();  // MD5值是5f4dcc3b5aa765d61d8327deb882cf99
 

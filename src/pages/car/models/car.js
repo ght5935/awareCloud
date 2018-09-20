@@ -1,4 +1,4 @@
-import { isApiSuccess, apiData } from "../../../utils/utils";
+import { isApiSuccess, apiData, delay } from "../../../utils/utils";
 import { WEBSOCKET_URL } from '../../../utils/config';
 import {
     getCarAmount,
@@ -23,9 +23,10 @@ export default {
     namespace: 'car',
     state: {
         searchVisible: false,
+        iSLoop: true,
         carList: [],
         pinkingList: [],
-        mapOrgPerceiveAndFace: [],
+        mapOrgPerceiveAndFace: '',
         todayFace: [],
         AllVillageList: [],
         carChart: {
@@ -95,6 +96,7 @@ export default {
             }
         },
         * getRealTimeCarPerceive({ payload }, { put, call, select }) {
+            const iSLoop = yield select(store => store.car.iSLoop)
             const response = yield call(getRealTimeCarPerceive, {});
             if (isApiSuccess(response)) {
                 const result = apiData(response);
@@ -104,6 +106,10 @@ export default {
                         todayFace: result
                     }
                 })
+                if (iSLoop) {
+                    yield call(delay, 3000)
+                    yield put({ type: 'getRealTimeCarPerceive' })
+                }
             }
         },
         // 图表chart

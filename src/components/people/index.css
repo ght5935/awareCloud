@@ -332,6 +332,7 @@
     height: 210px;
     margin: auto;
     display: block;
+    margin-bottom: 15px;
 }
 .infoLeftCon {
     width: 328px;

@@ -26,14 +26,8 @@ img{
 }
 .titleText {
   width: 56%;
-  height: 14.9%;
+  height: 15%;
   margin: 0 auto;
-}
-.titleText img{
-  display: inline-block;
-  margin: 0 auto;
-  width: 50%;
-  height: 100%;
 }
 .content {
   width: 16.5%;

@@ -86,7 +86,7 @@ class Chart extends React.Component {
         return (
             payload.map((entry, index) => (
                 <div style={{ background: '#fff', padding: 10, boxSizing: 'boeder-box' }} key={index}>
-                    <p >{`${entry.payload.houseType}: ${entry.payload.count}`}</p>
+                    <p >{`${entry.payload.type}: ${entry.payload.amount}`}</p>
                 </div>
             ))
         )
@@ -217,16 +217,16 @@ class Chart extends React.Component {
                             <Card titleLeft={'房屋类型'}>
                                 <div className={styles.BarCard}>
                                     <ResponsiveContainer width="100%" height="100%">
-                                        <BarChart data={chartData.houseTypeCountDataList}>
+                                        <BarChart data={chartData.houseTypeAmountData}>
                                             <CartesianGrid stroke="#3F576F" />
-                                            <XAxis dataKey="houseType" stroke="#DBDBDB" />
+                                            <XAxis dataKey="type" stroke="#DBDBDB" />
                                             <Tooltip
                                                 cursor={{ fill: 'rgba(0,0,0,.2)' }}
                                                 wrapperStyle={{ background: 'rgba(255,255,255,.3)' }}
                                                 content={this.tooltipType2}
                                             />
-                                            <Bar dataKey="count" fill="#3D938D" barSize={40}>
-                                                <LabelList dataKey="count" position="center" fill="#DBDBDB" />
+                                            <Bar dataKey="amount" fill="#3D938D" barSize={40}>
+                                                <LabelList dataKey="amount" position="center" fill="#DBDBDB" />
                                             </Bar>
                                         </BarChart>
                                     </ResponsiveContainer>

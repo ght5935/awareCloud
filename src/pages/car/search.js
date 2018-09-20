@@ -263,7 +263,8 @@ class Search extends React.Component {
                   <InfoiconCard
                     icons={smHouseIcon}
                     titLabel={'车辆数'}
-                    titCon={car.carInfoList && car.carInfoList.carImgSearchData ? car.carInfoList.carImgSearchData.carCount : ''}
+                    titCon={car.carInfoList && car.carInfoList.carImgSearchData &&
+                      car.carInfoList.carImgSearchData.carCount ? car.carInfoList.carImgSearchData.carCount : ''}
                     iSarrow={true}
                   />
                 </div>
@@ -273,7 +274,8 @@ class Search extends React.Component {
                   <InfoiconCard
                     icons={smHouseIcon}
                     titLabel={'车辆所属社区数'}
-                    titCon={car.carInfoList && car.carInfoList.carVilSearchData ? car.carInfoList.carVilSearchData.villageCount : ''}
+                    titCon={car.carInfoList && car.carInfoList.carVilSearchData &&
+                      car.carInfoList.carVilSearchData.villageCount ? car.carInfoList.carVilSearchData.villageCount : ''}
                     iSarrow={true}
                   />
                 </div>

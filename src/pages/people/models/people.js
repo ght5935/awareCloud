@@ -18,13 +18,14 @@ import {
 } from "../../../services/people";
 import { getUtilitiesDate, getUtilities } from '../../../services/index'
 
-import { isApiSuccess, apiData } from "../../../utils/utils";
+import { isApiSuccess, apiData, delay } from "../../../utils/utils";
 
 export default {
     namespace: 'people',
     state: {
         searchVisible: false,
         todayFace: [],
+        iSLoop: true,
         mapOrgCount: [],
         mapTagCount: [],
         mapOrgPerceiveAndFace: [],
@@ -68,6 +69,7 @@ export default {
     },
     effects: {
         * getTodayFace({ payload }, { put, call, select }) {
+            const iSLoop = yield select(store => store.people.iSLoop)
             const response = yield call(getTodayFace, {});
             if (isApiSuccess(response)) {
                 const result = apiData(response);
@@ -77,6 +79,11 @@ export default {
                         todayFace: result
                     }
                 })
+
+                if (iSLoop) {
+                    yield call(delay, 3000)
+                    yield put({ type: 'getTodayFace' })
+                }
             }
         },
         * getMapOrgCount({ payload }, { put, call, select }) {

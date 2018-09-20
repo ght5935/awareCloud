@@ -4,3 +4,6 @@ html, body, :global(#root) {
   overflow: hidden;
 }
 
+table { border-collapse: collapse; border-spacing: 0; }
+ol, ul { list-style: none; }
+q:before, q:after, blockquote:before, blockquote:after { content: ""; }

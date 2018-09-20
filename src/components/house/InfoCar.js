@@ -46,16 +46,21 @@ class InfoCar extends React.Component {
             >
                 {
                     carList.length > 0 ?
-                        <Row gutter={10} className={styles.middleRow}>
+                        <Row gutter={10} >
                             <Col span={24}>
                                 <div className={styles.infoLeftBg} >
-                                    <img src={carList && carList.length > 0 ? carList[0].carImg : ''} />
+                                    <img
+                                        src={carList && carList.length > 0 ? carList[0].carImg : ''}
+                                    />
+                                    <Link to={carList && carList.length > 0 && carList[0].carDetailData ? `/car/info?carId=${carList[this.state.infoCarIndex].id}` : ''}>
+                                        <div className={styles.infoBtn}>一车一档</div>
+                                    </Link>
                                 </div>
                             </Col>
                         </Row>
                         : <div className={styles.noDom}> 无图片信息 </div>
                 }
-                <Row gutter={10} className={styles.middleRow}>
+                {/* <Row gutter={10} >
                     <Col span={24}>
                         <div className={styles.infoLeftCon}>
                             {
@@ -84,12 +89,9 @@ class InfoCar extends React.Component {
                                 }
                                 )
                             }
-                            {/* <Link to='/house/chart'>
-                                <div className={styles.infoBtn}>轨迹查看</div>
-                            </Link> */}
                         </div>
                     </Col>
-                </Row>
+                </Row> */}
             </Card>
         )
     }

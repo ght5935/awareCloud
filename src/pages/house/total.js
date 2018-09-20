@@ -285,7 +285,9 @@ class Total extends React.Component {
                   <InfoiconCard
                     icons={smHouseIcon}
                     titLabel={'房屋数'}
-                    titCon={houseHome.HouseList && houseHome.HouseList.houseImgSearchData && houseHome.HouseList.houseImgSearchData.count ? houseHome.HouseList.houseImgSearchData.count : ''}
+                    titCon={houseHome.HouseList && houseHome.HouseList.houseImgSearchData &&
+                      houseHome.HouseList.houseImgSearchData.count &&
+                      houseHome.HouseList.houseImgSearchData.count ? houseHome.HouseList.houseImgSearchData.count : ''}
                     iSarrow={true}
                   />
                 </div>
@@ -295,7 +297,9 @@ class Total extends React.Component {
                   <InfoiconCard
                     icons={smHouseIcon}
                     titLabel={'房屋所属社区数'}
-                    titCon={houseHome.HouseList && houseHome.HouseList.houseVilSearchData && houseHome.HouseList.houseVilSearchData.count ? houseHome.HouseList.houseVilSearchData.count : ''}
+                    titCon={houseHome.HouseList && houseHome.HouseList.houseVilSearchData &&
+                      houseHome.HouseList.houseVilSearchData.count &&
+                      houseHome.HouseList.houseVilSearchData.count ? houseHome.HouseList.houseVilSearchData.count : ''}
                     iSarrow={true}
                   />
                 </div>

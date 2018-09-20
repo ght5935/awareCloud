@@ -99,3 +99,9 @@
     height: 100%;
     margin-bottom: 10px;
 }
+.carousel{
+    /* height: 100%; */
+    color: aliceblue;
+    text-align: center;
+    font-size: 18px;
+}

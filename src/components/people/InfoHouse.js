@@ -41,7 +41,7 @@ class InfoCar extends React.Component {
             <Card
                 titleLeft={data && data.address ? data.address : ''}
             >
-                <Row gutter={10} className={styles.middleRow}>
+                <Row gutter={10} >
                     <Col span={24}>
                         <div className={styles.infoLeftBg} >
                             {
@@ -52,7 +52,7 @@ class InfoCar extends React.Component {
                         </div>
                     </Col>
                 </Row>
-                <Row gutter={10} className={styles.middleRow}>
+                <Row gutter={10}>
                     <Col span={24}>
                         <div className={styles.infoLeftCon}>
                             <div style={{ marginBottom: 10 }}>
@@ -81,21 +81,23 @@ class InfoCar extends React.Component {
                             <div className={styles.infoLeftBg}>
                                 <span className={styles.infoLeftLabel}> 水 </span>
                                 <span className={styles.infoLeftTxt}>
-                                    {this.props.people.utilityData ? this.props.people.utilityData.waterConsumption : 0}(立方米)
-                                            </span>
+                                    {this.props.people.utilityData && this.props.people.utilityData.waterConsumption ?
+                                        `${this.props.people.utilityData.waterConsumption}(立方米)` : 0}
+                                </span>
                             </div>
                             <div className={styles.infoLeftBg}>
                                 <span className={styles.infoLeftLabel}> 电 </span>
                                 <span className={styles.infoLeftTxt}>
-                                    {this.props.people.utilityData ? this.props.people.utilityData.electricConsumption : 0}(千瓦时)
-                                            </span>
+                                    {this.props.people.utilityData && this.props.people.utilityData.electricConsumption ?
+                                        `${this.props.people.utilityData.electricConsumption}(千瓦时)` : 0}
+                                </span>
                             </div>
                             <div className={styles.infoLeftBg}>
                                 <span className={styles.infoLeftLabel}> 煤 </span>
                                 <span className={styles.infoLeftTxt}>
-                                    {this.props.people.utilityData ? this.props.people.utilityData.gasConsumption : 0}(立方米)
-
-                                            </span>
+                                    {this.props.people.utilityData && this.props.people.utilityData.gasConsumption ?
+                                        `${this.props.people.utilityData.gasConsumption}(立方米)` : 0}
+                                </span>
                             </div>
                             <div className={styles.infoLeftTime}>
                                 <Select
@@ -113,6 +115,13 @@ class InfoCar extends React.Component {
                                 </Select>
                             </div>
                         </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Link to={`/house/info?houseId=${data.houseId}`}>
+                            <div className={styles.infoBtn}>一屋一档</div>
+                        </Link>
                     </Col>
                 </Row>
             </Card>

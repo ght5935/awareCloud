@@ -68,8 +68,8 @@ class Index extends React.Component {
       return (
         <div key={idx} className={styles.totalType} >
           <TotalCard
-            totalLabel={item.typeName}
-            totalCon={item.typeAmount}
+            totalLabel={item.type}
+            totalCon={item.amount}
           />
         </div>)
     })

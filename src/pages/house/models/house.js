@@ -275,9 +275,13 @@ export default {
         * getHouse({ payload }, { put, call, select }) {
             const houseHome = yield select(store => store.house.houseHome);
             let houseHomeParams = houseHome.houseHomeParams;
+            let orgId = houseHomeParams.orgunitId
+            if (houseHomeParams.village) {
+                orgId = houseHomeParams.village
+            }
             const params = {
                 villageName: houseHomeParams.villageName,
-                orgunitId: houseHomeParams.village ? houseHomeParams.village : '',
+                orgunitId: orgId,
                 building: houseHomeParams.building,
                 unit: houseHomeParams.unit,
                 floor: houseHomeParams.floor,
@@ -339,7 +343,7 @@ export default {
             if (isApiSuccess(response)) {
                 const result = apiData(response);
                 let arrData = result.houseAttributeCountDataList ? result.houseAttributeCountDataList : []
-                arrData.map((v)=>{
+                arrData.map((v) => {
                     totalNum += v.count
                 })
                 yield put({

@@ -12,13 +12,14 @@ import { getAllTag } from '../services/people'
 import { isApiSuccess, apiData } from "../utils/utils";
 import { watchList } from '../services/webSocket';
 import { WEBSOCKET_URL } from '../utils/config';
+import * as Utils from '../utils/utils';
 export default {
     namespace: 'global',
     state: {
         fiveReal: [],
         facilities: [],
         security: [],
-        searchHouseVisible:false,
+        searchHouseVisible: false,
         searchModalVisiable: false,
         houseHome: {
             AttributeList: [],
@@ -37,11 +38,11 @@ export default {
                 plate_type: ''
             }
         },
-        allTag:[],
-        peopleSearch:{
-            tag:'',
-            idCard:'',
-            name:''
+        allTag: [],
+        peopleSearch: {
+            tag: '',
+            idCard: '',
+            name: ''
         },
         stat: {
             accessControlTotal: 0,
@@ -52,8 +53,9 @@ export default {
             todayTotal: 0,
             total: 0
         },
-        information: '',
-        todayFace: []
+        information: [],
+        todayFace: [],
+        iSLoop: true
     },
     subscriptions: {
         setup({ dispatch, history }) {
@@ -75,12 +77,8 @@ export default {
 
         },
         * socketMsg({ payload }, { put }) {
-            const stat = payload.data.stat;
-            let information = ''
-            console.log( payload.data)
-            if (payload.information)
-                information = payload.information;
-
+            const stat = payload.data.stat
+            const information = payload.data.information&&payload.data.information.information ? payload.data.information.information : []
             yield put({
                 type: 'success',
                 payload: {
@@ -88,7 +86,7 @@ export default {
                     information
                 }
             })
-            console.log('C%io','color:blue',stat)
+            console.log('c%io','color:blue', payload.data)
         },
         * five_real({ payload }, { put, call, select }) {
             const response = yield call(five_real, {});
@@ -127,15 +125,26 @@ export default {
             }
         },
         * getTodayFace({ payload }, { put, call, select }) {
+            const iSLoop = yield select(store => store.global.iSLoop)
+
+            // const delay = timeout => {
+            //     return new Promise(resolve => {
+            //         setTimeout(resolve, timeout)
+            //     })
+            // }
             const response = yield call(getTodayFace, {});
             if (isApiSuccess(response)) {
                 const result = apiData(response);
                 yield put({
                     type: 'success',
                     payload: {
-                        todayFace: result
+                        todayFace: result,
                     }
                 })
+                if (iSLoop) {
+                    yield call(Utils.delay, 3000)
+                    yield put({ type: 'getTodayFace' })
+                }
             }
         },
         * getOrgWeek({ payload }, { put, call, select }) {

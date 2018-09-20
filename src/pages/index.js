@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'umi/link';
 import router from 'umi/router'
 import { connect } from 'dva';
-import { Row, Col } from 'antd';
+import { Row, Col, Carousel } from 'antd';
 import { ResponsiveContainer, LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, LabelList } from 'recharts';
 
 import Card from '../components/common/Card';
@@ -15,12 +15,10 @@ import Circle from '../components/common/Circle';
 import UnreglarTitle from '../components/common/UnreglarTitle';
 import ModalCard from '../components/common/ModalCard';
 import QueryCard from '../components/common/QueryCard';
-
 import CarSearchModal from '../components/index/carSearchModal';
 import PeopleSearchModal from '../components/index/peopleSearchModal';
-
 import HouseSearchModal from '../components/index/houseSearchModal';
-
+import Loop from '../components/common/Loop';
 
 
 import styles from './index.css'
@@ -78,7 +76,14 @@ class IndexPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            visible: false
+            visible: false,
+            eventList: [
+                { name: '2018-03-25 10:25:33，心圆西苑（华夏二路1500弄），11号楼发生火灾' },
+                { name: '2018-03-25 10:25:33，心圆西苑（华夏二路1500弄），12号楼发生火灾' },
+                { name: '2018-03-25 10:25:33，心圆西苑（华夏二路1500弄），13号楼发生火灾' },
+                { name: '2018-03-25 10:25:33，心圆西苑（华夏二路1500弄），14号楼发生火灾' },
+                { name: '2018-03-25 10:25:33，心圆西苑（华夏二路1500弄），15号楼发生火灾' },
+            ]
         }
     }
     testModal = () => {
@@ -88,13 +93,6 @@ class IndexPage extends React.Component {
         })
     }
     componentDidMount() {
-        console.log(this.props, '=================')
-        this.props.dispatch({
-            type:'login/success',
-            payload:{
-                loading:false
-            }
-        })
         window.g_app._store.dispatch({
             type: 'global/five_real'
         })
@@ -104,7 +102,14 @@ class IndexPage extends React.Component {
         window.g_app._store.dispatch({
             type: 'global/getSecurity'
         })
+        this.props.dispatch({
+            type: 'global/success',
+            payload: {
+                iSLoop: true
+            }
+        })
 
+        // 人脸识别感知实时统计 轮询
         window.g_app._store.dispatch({
             type: 'global/getTodayFace'
         })
@@ -122,11 +127,7 @@ class IndexPage extends React.Component {
         })
         document.addEventListener('click', docClick)
     }
-    componentWillUnmount() {
-        document.removeEventListener('click', docClick)
-    }
     onSearchIconClick = (i, e) => {
-
         this.setState({
             searchKey: i
         });
@@ -136,12 +137,6 @@ class IndexPage extends React.Component {
                 searchModalVisiable: true
             }
         });
-        this.props.dispatch({
-            type:'login/success',
-            payload:{
-                loading:false
-            }
-        })
     }
     renderFacilities = data => {
         let facilities = data ? data : []
@@ -219,6 +214,14 @@ class IndexPage extends React.Component {
         )
     }
     componentWillUnmount() {
+        document.removeEventListener('click', docClick)
+        console.log('%index清除参数', 'color:red')
+        this.props.dispatch({
+            type: 'global/success',
+            payload: {
+                iSLoop: false
+            }
+        })
         window.g_app._store.dispatch({
             type: 'global/success',
             payload: {
@@ -226,6 +229,18 @@ class IndexPage extends React.Component {
                 todayFace: []
             }
         })
+    }
+    renderLoop = (data) => {
+        let Ele
+        Ele = data.map((v, i) => {
+            return (
+                <div className={styles.carousel} key={i}>
+                    {v}
+                </div>
+            )
+        }
+        )
+        return Ele
     }
     render() {
         const securityData = this.props.security
@@ -239,9 +254,6 @@ class IndexPage extends React.Component {
                             </div>)}
 
                     </Slogen>
-                    {/* <div className={styles.centerMap}>
-                        <img src={bdmap} alt="" />
-                    </div> */}
                 </div>
                 <div className={styles.left}>
                     <Card titleLeft={'五实信息'}>
@@ -299,46 +311,6 @@ class IndexPage extends React.Component {
                         </Row>
                     </Card>
                     <Card titleLeft={'消防设施'}>
-                        {/* <Row className={styles.middleRow} gutter={20}>
-                            <Col span={8}>
-                                <InfoCard
-                                    titleLabel={'灭火器'}
-                                    titleCon={this.props.facilities.fireExtinguisher}
-                                />
-                            </Col>
-                            <Col span={8}>
-                                <InfoCard
-                                    titleLabel={'消火栓'}
-                                    titleCon={this.props.facilities.fireHydrant}
-                                />
-                            </Col>
-                            <Col span={8}>
-                                <InfoCard
-                                    titleLabel={'火灾感应器'}
-                                    titleCon={this.props.facilities.fireSensor}
-                                />
-                            </Col>
-                        </Row>
-                        <Row gutter={20}>
-                            <Col span={8}>
-                                <InfoCard
-                                    titleLabel={'烟雾传感器'}
-                                    titleCon={this.props.facilities.smokeSensor}
-                                />
-                            </Col>
-                            <Col span={8}>
-                                <InfoCard
-                                    titleLabel={'自动灭火器'}
-                                    titleCon={this.props.facilities.automaticallyOff}
-                                />
-                            </Col>
-                            <Col span={8}>
-                                <InfoCard
-                                    titleLabel={'防排烟系统'}
-                                    titleCon={this.props.facilities.smokeControl}
-                                />
-                            </Col>
-                        </Row> */}
                         <div className={styles.totalNumberCard}>
                             {this.renderFacilities(this.props.facilities)}
                         </div>
@@ -347,56 +319,6 @@ class IndexPage extends React.Component {
                         <div className={styles.totalNumberCard}>
                             {this.renderSecurity(this.props.security)}
                         </div>
-                        {/* <Row className={styles.middleRow} gutter={20}>
-                            <Col span={12}>
-                                <TotalCard
-                                    totalLabel={'门禁'}
-                                    totalCon={securityData && securityData.accessControl ? securityData.accessControl : ''}
-                                />
-                            </Col>
-                            <Col span={12}>
-                                <TotalCard
-                                    totalLabel={'摄像头'}
-                                    totalCon={securityData && securityData.camera ? securityData.camera : ''}
-                                />
-                            </Col>
-                        </Row>
-                        <Row className={styles.middleRow} gutter={20}>
-                            <Col span={12}>
-                                <TotalCard
-                                    totalLabel={'巡更点位'}
-                                    totalCon={securityData && securityData.patrolPoint ? securityData.patrolPoint : ''}
-                                />
-                            </Col>
-                            <Col span={12}>
-                                <TotalCard
-                                    totalLabel={'可视对讲'}
-                                    totalCon={securityData && securityData.videoIntercom ? securityData.videoIntercom : ''}
-                                />
-                            </Col>
-                        </Row>
-                        <Row className={styles.middleRow} gutter={20}>
-                            <Col span={12}>
-                                <TotalCard
-                                    totalLabel={'一键报警'}
-                                    totalCon={securityData && securityData.alarm ? securityData.alarm : ''}
-                                />
-                            </Col>
-                            <Col span={12}>
-                                <TotalCard
-                                    totalLabel={'人脸监控系统'}
-                                    totalCon={securityData && securityData.faceMonitoring ? securityData.faceMonitoring : ''}
-                                />
-                            </Col>
-                        </Row>
-                        <Row gutter={20}>
-                            <Col span={12}>
-                                <TotalCard
-                                    totalLabel={'车辆识别系统'}
-                                    totalCon={securityData && securityData.carSpot ? securityData.carSpot : ''}
-                                />
-                            </Col>
-                        </Row> */}
                     </Card>
                 </div>
                 <div className={styles.right}>
@@ -485,14 +407,17 @@ class IndexPage extends React.Component {
                         </div>
                     </Card>
                 </div>
-                {this.props.searchModalVisiable ? this.renderSearchModal() : ''}
                 <div className={styles.indexBottom}>
                     <QueryCard
                         leftTxt={'感知事件'}
                     >
-                        <span style={{ fontSize: 15 }}>2018-03-24 10:25:33，心圆西苑（华夏二路1500弄），15号楼发生火灾。</span>
+                        <Loop dataList={this.props.information}>
+                            {this.renderLoop(this.props.information)}
+                        </Loop>
                     </QueryCard>
                 </div>
+                {this.props.searchModalVisiable ? this.renderSearchModal() : ''}
+
             </div>
         )
     }
@@ -505,9 +430,9 @@ export default connect(state => {
         facilities: state.global.facilities,
         security: state.global.security,
         stat: state.global.stat,
+        information: state.global.information,
         todayFace: state.global.todayFace,
         orgWeek: state.global.orgWeek,
         searchModalVisiable: state.global.searchModalVisiable,
-        login: state.login
     };
 })(IndexPage);

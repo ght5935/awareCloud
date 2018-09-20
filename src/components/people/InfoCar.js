@@ -28,6 +28,7 @@ class InfoCar extends React.Component {
         })
     }
     onTabClick = (v) => {
+        console.log(v)
         const data = this.props.people.carInfo && this.props.people.carInfo.length > 0 ? this.props.people.carInfo : []
         if (data && data.length == 1) {
             v = 0
@@ -45,19 +46,24 @@ class InfoCar extends React.Component {
                 onTabClick={this.onTabClick}
                 tabIndex={this.state.infoCarIndex}
             >
-                <Row gutter={10} className={styles.middleRow}>
+                <Row gutter={10}>
                     <Col span={24}>
-                    {
-                        data && data.length > 0 ? 
-                        <div className={styles.infoLeftBg} >
-                            <img src={data && data.length > 0 ? data[this.state.infoCarIndex].carDetailData.img[0] : ''} alt="" />
-                        </div> 
-                        : <div className={styles.noDom}> 无图片信息 </div>
-                    }
-                        
+                        {
+                            data && data.length > 0 ?
+                                <div className={styles.infoLeftBg} >
+                                    <img
+                                        src={data && data.length > 0 ? data[this.state.infoCarIndex].carDetailData.img[0] : ''}
+                                        alt=""
+                                    />
+                                    <Link to={data && data.length > 0 && data[0].carDetailData ? `/car/info?carId=${data[this.state.infoCarIndex].carDetailData.id}` : ''}>
+                                        <div className={styles.infoBtn}>一车一档</div>
+                                    </Link>
+                                </div>
+                                : <div className={styles.noDom}> 无图片信息 </div>
+                        }
                     </Col>
                 </Row>
-                {data && data.length > 0 ? data[this.state.infoCarIndex].perceviceDetailDatas && data[this.state.infoCarIndex].perceviceDetailDatas.length > 0 ?
+                {/* {data && data.length > 0 ? data[this.state.infoCarIndex].perceviceDetailDatas && data[this.state.infoCarIndex].perceviceDetailDatas.length > 0 ?
                     <Row gutter={10} className={styles.middleRow}>
                         <Col span={24}>
                             <div className={styles.infoLeftCon}>
@@ -79,14 +85,13 @@ class InfoCar extends React.Component {
                                     </div>
                                 )}
 
-                                {/* <Link to='/house/chart'>
+                                <Link to='/house/chart'>
                                     <div className={styles.infoBtn}>轨迹查看</div>
-                                </Link> */}
+                                </Link>
                             </div>
                         </Col>
                     </Row>
-                    : '' : ''}
-
+                    : '' : ''} */}
             </Card>
         )
     }

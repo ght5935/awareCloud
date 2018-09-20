@@ -23,16 +23,18 @@ class Login extends React.Component {
 
   componentDidMount() {
     this.inputRef.input.focus();
-    console.log(this.props, '登录')
   }
   componentWillUnmount() {
     this.props.dispatch({
-      type: 'login/success',
+      type: 'login/resetState',
       payload: {
-        loading: false
+        loading: false,
+        isLogin: false,
+        hasError: false,
+        errorMsg: null,
       }
     })
-    console.log('%clogin卸载','color:red')
+    console.log('%clogin卸载', 'color:red')
   }
   inputRef = undefined;
   componentDidUpdate() {
@@ -76,7 +78,7 @@ class Login extends React.Component {
   loginSuccess() {
     if (this.props.isLogin && !this.props.hasError) {
       this.props.dispatch({
-        type: 'login/success',
+        type: 'login/loginSuccess',
         payload: {
           loading: false
         }
@@ -89,7 +91,6 @@ class Login extends React.Component {
         type: 'login/clearMsg'
       });
     }
-    console.log('%clogin成功','color:red')
   }
   clearPassword = () => {
     this.setState({
@@ -112,8 +113,7 @@ class Login extends React.Component {
           <div className={styles.line} />
         </div>
         <div className={styles.titleText}>
-          {/* <img src={sologan_l} alt="" />
-          <img src={sologan_r} alt="" /> */}
+
         </div>
         <div className={styles.content}>
           <img src={userLogin} className={styles.userImg} alt="" />

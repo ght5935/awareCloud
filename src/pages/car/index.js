@@ -13,6 +13,7 @@ import TotalCard from '../../components/common/totalCard';
 import UnreglarTitle from '../../components/common/UnreglarTitle';
 import QueryCard from '../../components/common/QueryCard';
 import SearchModal from '../../components/car/searchModal';
+import Loop from '../../components/common/Loop';
 
 import style from '../../style/common/common.css';
 import styles from './index.css';
@@ -31,8 +32,17 @@ function BarTick(props) {
 
 
 class Index extends React.Component {
-    state = {
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            eventList: [
+                { name: '2018-03-25 10:25:33，心圆西苑（华夏二路1500弄），11号楼发生火灾' },
+                { name: '2018-03-25 10:25:33，心圆西苑（华夏二路1500弄），12号楼发生火灾' },
+                { name: '2018-03-25 10:25:33，心圆西苑（华夏二路1500弄），13号楼发生火灾' },
+                { name: '2018-03-25 10:25:33，心圆西苑（华夏二路1500弄），14号楼发生火灾' },
+                { name: '2018-03-25 10:25:33，心圆西苑（华夏二路1500弄），15号楼发生火灾' },
+            ]
+        }
     }
     componentDidMount() {
         this.props.dispatch({
@@ -44,17 +54,26 @@ class Index extends React.Component {
         this.props.dispatch({
             type: 'car/getTodayCarPerceive'
         })
+
+        this.props.dispatch({
+            type: 'car/success',
+            payload: {
+                iSLoop: true
+            }
+        })
+        // 人脸识别感知实时统计 轮询
         this.props.dispatch({
             type: 'car/getRealTimeCarPerceive'
         })
     }
     componentWillUnmount() {
         this.props.dispatch({
-            type: 'people/success',
+            type: 'car/success',
             payload: {
-                mapOrgPerceiveAndFace: [],
+                mapOrgPerceiveAndFace: '',
                 todayFace: [],
-                searchHouseVisible: false
+                searchHouseVisible: false,
+                iSLoop: false
             }
         })
     }
@@ -124,6 +143,18 @@ class Index extends React.Component {
             ))
         )
     }
+    renderLoop = (data) => {
+        let Ele
+        Ele = data.map((v, i) => {
+            return (
+                <div className={styles.carousel} key={i}>
+                    {v}
+                </div>
+            )
+        }
+        )
+        return Ele
+    }
     render() {
         const car = this.props.car;
         const carTotal = car.carTotal;
@@ -179,14 +210,14 @@ class Index extends React.Component {
                 <div className={styles.totalRight}>
                     <Card
                         titleLeft={'车辆感知数据总量'}
-                        titleRight={this.props.mapOrgPerceiveAndFace && this.props.mapOrgPerceiveAndFace.totalAmount ? this.props.mapOrgPerceiveAndFace.totalAmount : '0'}
+                        titleRight={this.props.car.mapOrgPerceiveAndFace && this.props.car.mapOrgPerceiveAndFace.total ? this.props.car.mapOrgPerceiveAndFace.total : '0'}
                     >
                         <div style={{ width: '98%', margin: '1% auto', background: 'rgba(32, 52, 68, .7)' }}>
                             <div>
                                 <UnreglarTitle title={'今日感知增量'} />
                             </div>
                             <ResponsiveContainer width="100%" height={200} >
-                                <BarChart data={this.props.car.mapOrgPerceiveAndFace.perList} margin={{ top: 30, right: 10, left: 10, bottom: 5 }}>
+                                <BarChart data={this.props.car.mapOrgPerceiveAndFace.perceiveData} margin={{ top: 30, right: 10, left: 10, bottom: 5 }}>
                                     <defs>
                                         <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
                                             <stop offset="5%" stopColor="#063EAF" stopOpacity={0.35} />
@@ -230,7 +261,9 @@ class Index extends React.Component {
                     <QueryCard
                         leftTxt={'感知事件'}
                     >
-                        <span style={{ fontSize: 15 }}>2018-03-24 10:25:33，心圆西苑（华夏二路1500弄），15号楼发生火灾。</span>
+                        <Loop dataList={this.props.global.information}>
+                            {this.renderLoop(this.props.global.information)}
+                        </Loop>
                     </QueryCard>
                 </div>
                 {this.props.global.searchHouseVisible ? <SearchModal /> : ''}
