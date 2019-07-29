@@ -49,7 +49,7 @@ class InfoPerson extends React.Component {
                             <div className={styles.infoLeftBg} >
                                 <img
                                     src={carOwnerData && carOwnerData.personImg ? carOwnerData.personImg : ''}
-                                    style={{ width: 115, height: 154 }}
+                                    // style={{ width: 115, height: 154 }}
                                     alt=""
                                 />
                             </div>

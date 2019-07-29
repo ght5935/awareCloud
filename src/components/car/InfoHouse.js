@@ -19,7 +19,7 @@ class InfoHouse extends React.Component {
         const carInfoData = carInfo.carInfoData
         const carHouseData = carInfoData.carHouseData
         return (
-            <Card titleLeft={carHouseData ? carHouseData.address : ''}>
+            <Card titleLeft={carHouseData ? carHouseData.address : '房屋'}>
                 <Row gutter={10} className={styles.middleRow}>
                     <Col span={24}>
                         <div className={styles.infoLeftBg} >

@@ -5,5 +5,13 @@ html, body, :global(#root) {
 }
 
 table { border-collapse: collapse; border-spacing: 0; }
-ol, ul { list-style: none; }
+ol, ul, dl { list-style: none; margin: 0;padding: 0; }
 q:before, q:after, blockquote:before, blockquote:after { content: ""; }
+
+/* 
+:global(ul .ant-pagination-options-quick-jumper input){
+  border: 1px solid #02abe3;
+  background-color: transparent;
+  color: #fff;
+  height: 24px;
+} */
